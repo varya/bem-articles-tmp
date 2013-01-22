@@ -38,3 +38,20 @@ When finished, you will see the following message:
 
 This means that there is `bem server` running. It will automatically rebuild your
 project if you change something.
+
+## Changing pages
+By now you have one page in your project, which is
+[index.html](http://localhost:8080/desktop.bundles/index/index.html). Do not
+hesitate to open it under your browser.<br/>
+When opening the page at the first time, you have to wait some time because `bem
+server` is loading all the libraries expected for building the page.
+
+The project structure dictates to store blocks under `desktop.blocks` folder and
+pages under `desktop.bundles`.<br/>
+Frankly speaking, `desktop.bundles` keeps sets of blocks. These sets can be of
+the most popular blocks among several pages, which is usually called as
+`common`. Or a set can unite all the blocks from all the pages, being called
+`all`. Finally, the easiest case, there could be a set of blocks for each page.
+Here we will be using the last easiest way.
+
+Chaning `desktop.bundles/index/index.bemjson.js` file you can modify the page.
