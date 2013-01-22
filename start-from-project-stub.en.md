@@ -113,3 +113,14 @@ https://gist.github.com/4175573
 
 This will a requisite markup for you to use when writing CSS rules. Or, speaking
 in BEM language, you need to implement `layout` block in CSS.
+
+### Creating a new block
+You need to use `bem create` command to get a new block file for a technology
+you are going to work with.
+
+    $ bem create -l desktop.blocks/ -T css -b layout
+
+Running this command will create `desktop.blocks/layout/layout.css`, and inside
+there will be a CSS selector that matches the `layout` block. What you are to do
+is to fill in the selector with your CSS properties.<br/>
+Or just copy and paste from Gist: https://gist.github.com/4175598
