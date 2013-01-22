@@ -147,3 +147,27 @@ for logo or your own.
 src="http://img-fotki.yandex.ru/get/4119/14441195.26/0_6f0b9_2d1d77a3_XL.jpg"
 width="800" height="187" title="Using block library"
 alt="Using block library" border="0"/>
+
+### Redefining library blocks
+#### Redefining in CSS
+`b-logo` block being used for the page provides just a piece of markup. It is
+developer's responsibility to write needed CSS for the block because every new
+site desing usually needs its own.
+
+We will keep CSS rules for `b-logo` in its CSS file, which we need to create at
+the project block level.
+
+    $ bem create -l desktop.blocks/ -T css -b b-logo
+
+Then, save time and copy CSS form here https://gist.github.com/4175675
+
+The same can be done for `b-search` block:
+
+    $ bem create -l desktop.blocks/ -T css -b b-search
+
+https://gist.github.com/4195433
+
+<img
+src="http://img-fotki.yandex.ru/get/5708/14441195.26/0_6f0ba_bb628e4c_XL.jpg"
+width="800" height="141" title="Styled head" alt="Styled head"
+border="0"/>
