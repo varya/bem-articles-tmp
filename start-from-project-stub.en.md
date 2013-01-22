@@ -114,7 +114,7 @@ https://gist.github.com/4175573
 This will a requisite markup for you to use when writing CSS rules. Or, speaking
 in BEM language, you need to implement `layout` block in CSS.
 
-### Creating a new block
+## Creating a new block
 You need to use `bem create` command to get a new block file for a technology
 you are going to work with.
 
@@ -124,3 +124,26 @@ Running this command will create `desktop.blocks/layout/layout.css`, and inside
 there will be a CSS selector that matches the `layout` block. What you are to do
 is to fill in the selector with your CSS properties.<br/>
 Or just copy and paste from Gist: https://gist.github.com/4175598
+
+## Using block library
+You do not need to implement web search form and logo blocks nested into
+`layout` on your own. They are provided by [bem-bl block
+library](https://gist.github.com/4175598). So you can just declare them when
+defining your page. This means pasting BEMJSON defenition of a block into a page
+file `desktop.bundles/index/index.bemjson.js`.
+
+We will use
+[b-searh](http://bem.github.com/bem-bl/sets/common-desktop/b-search/b-search.en.html)
+and
+[b-logo](http://bem.github.com/bem-bl/sets/common-desktop/b-logo/b-logo.en.html)
+blocks.<br/>
+https://gist.github.com/4175640
+
+You can use [nice BEM
+image](http://toivonen.github.com/online-shop-dummy/desktop.blocks/b-logo/b-logo.png)
+for logo or your own.
+
+<img
+src="http://img-fotki.yandex.ru/get/4119/14441195.26/0_6f0b9_2d1d77a3_XL.jpg"
+width="800" height="187" title="Using block library"
+alt="Using block library" border="0"/>
