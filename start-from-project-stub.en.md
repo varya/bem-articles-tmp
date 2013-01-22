@@ -55,3 +55,61 @@ the most popular blocks among several pages, which is usually called as
 Here we will be using the last easiest way.
 
 Chaning `desktop.bundles/index/index.bemjson.js` file you can modify the page.
+
+### Definig a block in BEMJSON
+Fist, let's place `head` block into the page.
+
+    { block: 'head' }
+
+From now on you can find code snapshort on Gist: https://gist.github.com/4175550
+
+Refresh the page to see proper `<div>`.
+
+    <!DOCTYPE html>
+    <html class="i-ua_js_yes i-ua_css_standard">
+        <head>...</head>
+        <body class="b-page b-page__body">
+            <div class="head"></div>
+        </body>
+    </html>
+
+Next, we will fill the head with a search form, logo and an approptiate layout.
+
+Put `layout` block with its 2 element `left` and `right` inside `head`.
+
+    content: [
+        {
+            block: 'head',
+            content: {
+                block: 'layout',
+                content: [
+                    {
+                        elem: 'left',
+                        content: 'left here'
+                    },
+                    {
+                        elem: 'right',
+                        content: 'right here'
+                    }
+                ]
+            }
+        }
+    ]
+
+https://gist.github.com/4175573
+
+    <!DOCTYPE html>
+    <html class="i-ua_js_yes i-ua_css_standard">
+        <head>...</head>
+        <body class="b-page b-page__body">
+            <div class="head">
+                <div class="layout">
+                    <div class="layout__left">left here</div>
+                    <div class="layout__right">right here</div>
+                </div>
+            </div>
+        </body>
+    </html>
+
+This will a requisite markup for you to use when writing CSS rules. Or, speaking
+in BEM language, you need to implement `layout` block in CSS.
