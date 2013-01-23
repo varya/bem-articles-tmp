@@ -2,8 +2,8 @@
 
 This article shows you how to develop an [online shop
 web page](http://toivonen.github.com/online-shop-dummy/desktop.bundles/index/index.html)
-using BEM principles in CSS, JavaScript and BEMHTML templates. We will use `bem
-tools` and its subcommand `bem server` when developing.
+using BEM principles in CSS, JavaScript and BEMHTML templates. While developing, we will use `bem
+tools` and its subcommand `bem server`.
 
 <img
 src="http://img-fotki.yandex.ru/get/6505/14441195.26/0_6f0b2_557ef428_L.jpg"
@@ -11,59 +11,54 @@ width="500" height="351" title="Online shop web page" alt="Online shop web page"
 border="0"/>
 
 ## Tools
-To start you will need [bem tools](https://github.com/bem/bem-tools), a command line
-toolkit to operate on BEM entities and building your project. Follow the
-installation steps in its repository.
+You need a command-line toolkit [bem tools](https://github.com/bem/bem-tools) to begin with the project.
+Follow the installation steps in the corresponding repository.
 
-## Running your project repository
-The easiest way to run a project is to coppy a similar project repository with a
-suitable structure. We would like to use full stack of BEM technologies, so this
-is the [project-stub](https://github.com/bem/project-stub) repository that
-suits.
+## Start with a project repository
+The easiest way to start is to copy a similar project repository with suitable structure.
+We intend to use the full power of BEM technologies, so this [project-stub](https://github.com/bem/project-stub)
+will suit you just fine.
 
     $ git clone git://github.com/bem/project-stub.git my-pretty-project
     $ cd my-pretty-project/
     $ rm -rf .git
     $ git init
 
-Then, you need to build the project by running `make` command:
+Build the project by running a `make` command:
 
     $ make
 
-That takes some time because the first launch also installs all the required npm
-packadges.<br/>
-When finished, you will see the following message:
+The first launch may take some time as required npm packadges are being installed in background.<br/>
+Upon completion, you'll see the following message:
 
    info: Server is listening on port 8080. Point your browser to http://localhost:8080/
 
-This means that `bem server` is running. It will automatically rebuild your
-project after changing something.
+This means `bem server` is up and running; from this point on, your project is automatically rebuilt
+each time you change something.
 
 ## Changing pages
-By now you have one page in your project, which is
-[index.html](http://localhost:8080/desktop.bundles/index/index.html). Do not
-hesitate to open it in your browser.<br/>
-When opening the page at the first time, you have to wait a few seconds because `bem
-server` is loading all the libraries expected for building the page.
+You have just one page in your project to begin with:
+[index.html](http://localhost:8080/desktop.bundles/index/index.html). Try and open it in your browser.<br/>
+When opening the page for the first time, be prepared to wait a few seconds while `bem
+server` is loading all the libraries used for building the page.
 
-The project structure dictates to store blocks under `desktop.blocks` folder and
-pages under `desktop.bundles`.<br/>
-Actually, `desktop.bundles` keeps sets of blocks. These sets can be of
-the most popular blocks among several pages, which is usually called as
-`common`. Or a set can unite all the blocks from all the pages, being called
-`all`. Finally, the easiest case, there could be a set of blocks for each page.
-Here we will be using the third case.
+This project's structure presumes that blocks are stored under the `desktop.blocks` folder and
+pages under `desktop.bundles` folder.<br/>
+In fact, `desktop.bundles` may contain bundles consisting of blocks most commonly used on most
+of the pages, i.e. `common` block bundle, or all the blocks
+from all the pages, i.e. `all` block bundle. Finally, the simplest case:
+you can have a set of blocks for each page; it's how we will proceed.
 
-Changing `desktop.bundles/index/index.bemjson.js` file you can modify the page.
+You can modify the page by changing the `desktop.bundles/index/index.bemjson.js` file.
 
-### Definig a block in BEMJSON
-First, let's place `head` block into the page.
+### Defining a block in BEMJSON
+First, let's add `head` block to the page.
 
     { block: 'head' }
 
-From now on you can find code snapshorts on Gist: https://gist.github.com/4175550
+From this point on, find code snapshots on Gist: https://gist.github.com/4175550
 
-Refresh the page to see an appropriate `<div>`.
+Refresh the page to see the corresponding `<div>`.
 
     <!DOCTYPE html>
     <html class="i-ua_js_yes i-ua_css_standard">
@@ -73,9 +68,9 @@ Refresh the page to see an appropriate `<div>`.
         </body>
     </html>
 
-Next, we will fill the head with a search form, logo and the relevant layout.
+On the next step, we add a search form, a logo, and describe layout inside the header.
 
-Put `layout` block with its 2 elements `left` and `right` inside `head`.
+Put a `layout` block along with its 2 elements (`left` and `right`) inside `head`.
 
     content: [
         {
@@ -111,26 +106,24 @@ https://gist.github.com/4175573
         </body>
     </html>
 
-This markup needs you to write suitable CSS rules.
-Or, to put it
-in BEM terms, you have to implement `layout` block in CSS.
+This markup requires CSS rules to be described.
+Or, saying the same in BEM terms, you have to implement `layout` block in CSS.
 
 ## Creating a new block
-You need to use `bem create` command to get a new block file for the technology
+You need to use `bem create` to get a new block file for the technology
 you are going to work with.
 
     $ bem create -l desktop.blocks/ -T css -b layout
 
 Running this command will create `desktop.blocks/layout/layout.css`, and inside
-there will be a CSS selector that matches `layout` block. What you are to do
-is to fill in the selector with your CSS properties.<br/>
-Or just copy and paste from Gist: https://gist.github.com/4175598
+you will find a CSS selector that matches the `layout` block. It's now your part
+to fill up the selector with CSS properties.<br/>
+You can just copy and paste from Gist: https://gist.github.com/4175598
 
 ## Using block library
-You do not need to implement web search form and logo blocks nested into
-`layout` yourself. They are provided by [bem-bl block
-library](https://gist.github.com/4175598). So you can just declare them when
-defining your page. This means pasting BEMJSON defenition for a block into 
+You do not need to implement web search form and logo blocks yourself; they are provided by [bem-bl block
+library](https://gist.github.com/4175598). So, you can just declare them when
+defining your page. This means pasting BEMJSON block definition into the 
 `desktop.bundles/index/index.bemjson.js` page file.
 
 We will use
@@ -140,27 +133,26 @@ and
 blocks.<br/>
 https://gist.github.com/4175640
 
-For the logo you can use [nice BEM
+For the logo, you can use our [cute BEM
 image](http://toivonen.github.com/online-shop-dummy/desktop.blocks/b-logo/b-logo.png)
-or your own.
+or any other pic.
 
 <img
 src="http://img-fotki.yandex.ru/get/4119/14441195.26/0_6f0b9_2d1d77a3_XL.jpg"
-width="800" height="187" title="Using block library"
-alt="Using block library" border="0"/>
+width="800" height="187" title="Using the block library"
+alt="Using the block library" border="0"/>
 
 ### Redefining library blocks
 #### Redefining in CSS
-`b-logo` block being used for the page provides just a piece of markup. It is
-the developer's responsibility to write the needed CSS for the block because every new
-site desing usually needs its own.
+`b-logo` block provides just a piece of markup. It is developer's responsibility to create
+the needed CSS for the block because every new site design usually needs unique styles.
 
-We will keep CSS rules for `b-logo` in its CSS file, which we need to create at
-the project block level.
+We will keep CSS rules for `b-logo` in its CSS file, which we need to create on
+the project block level:
 
     $ bem create -l desktop.blocks/ -T css -b b-logo
 
-Then, save time and copy CSS form here https://gist.github.com/4175675
+Then, save some time and copy CSS from here: https://gist.github.com/4175675
 
 The same can be done for `b-search` block:
 
@@ -170,5 +162,5 @@ https://gist.github.com/4195433
 
 <img
 src="http://img-fotki.yandex.ru/get/5708/14441195.26/0_6f0ba_bb628e4c_XL.jpg"
-width="800" height="141" title="Styled head" alt="Styled head"
+width="800" height="141" title="Styled header" alt="Styled header"
 border="0"/>
