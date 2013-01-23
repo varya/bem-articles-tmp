@@ -28,8 +28,7 @@ Build the project by running a `make` command:
 
     $ make
 
-This might take some time on the first launch as all the required npm
-packadges are installed.<br/>
+The first launch may take some time as required npm packadges are being installed in background.<br/>
 Upon completion, you'll see the following message:
 
    info: Server is listening on port 8080. Point your browser to http://localhost:8080/
@@ -43,7 +42,7 @@ You have just one page in your project to begin with:
 When opening the page for the first time, be prepared to wait a few seconds while `bem
 server` is loading all the libraries used for building the page.
 
-BEM project structure presumes that blocks are stored under the `desktop.blocks` folder and
+This project's structure presumes that blocks are stored under the `desktop.blocks` folder and
 pages under `desktop.bundles` folder.<br/>
 In fact, `desktop.bundles` may contain bundles consisting of blocks most commonly used on most
 of the pages, i.e. `common` block bundle, or all the blocks
