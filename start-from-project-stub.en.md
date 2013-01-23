@@ -16,7 +16,7 @@ Follow the installation steps in the corresponding repository.
 
 ## Start with a project repository
 The easiest way to start is to copy a similar project repository with suitable structure.
-We intend to use the full power of BEM technologies, so his [project-stub](https://github.com/bem/project-stub)
+We intend to use the full power of BEM technologies, so this [project-stub](https://github.com/bem/project-stub)
 will suit you just fine.
 
     $ git clone git://github.com/bem/project-stub.git my-pretty-project
@@ -45,9 +45,9 @@ server` is loading all the libraries used for building the page.
 
 BEM project structure presumes that blocks are stored under the `desktop.blocks` folder and
 pages under `desktop.bundles` folder.<br/>
-In fact, `desktop.bundles` contains sets of blocks inside. These sets include
-blocks most commonly used on most of the pages, called `common`. Otherwise, a set could comprise
-all the blocks from all the pages, such a set would be called `all`. Finally, the simplest case:
+In fact, `desktop.bundles` may contain bundles consisting of blocks most commonly used on most
+of the pages, i.e. `common` block bundle, or all the blocks
+from all the pages, i.e. `all` block bundle. Finally, the simplest case:
 you can have a set of blocks for each page; it's how we will proceed.
 
 You can modify the page by changing the `desktop.bundles/index/index.bemjson.js` file.
@@ -108,7 +108,7 @@ https://gist.github.com/4175573
     </html>
 
 This markup requires CSS rules to be described.
-Or, saying the same in BEM terms, you have to implement the `layout` block in CSS.
+Or, saying the same in BEM terms, you have to implement `layout` block in CSS.
 
 ## Creating a new block
 You need to use `bem create` to get a new block file for the technology
@@ -117,7 +117,7 @@ you are going to work with.
     $ bem create -l desktop.blocks/ -T css -b layout
 
 Running this command will create `desktop.blocks/layout/layout.css`, and inside
-you'll find a CSS selector that matches the `layout` block. It's now your part
+you will find a CSS selector that matches the `layout` block. It's now your part
 to fill up the selector with CSS properties.<br/>
 You can just copy and paste from Gist: https://gist.github.com/4175598
 
@@ -145,9 +145,8 @@ alt="Using the block library" border="0"/>
 
 ### Redefining library blocks
 #### Redefining in CSS
-`b-logo` block provides just a piece of markup when used on a page. It is
-developer's responsibility to create the needed CSS for the block because every new
-site design usually needs styles of its own.
+`b-logo` block provides just a piece of markup. It is developer's responsibility to create
+the needed CSS for the block because every new site design usually needs unique styles.
 
 We will keep CSS rules for `b-logo` in its CSS file, which we need to create on
 the project block level:
