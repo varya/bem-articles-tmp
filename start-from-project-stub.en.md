@@ -218,3 +218,133 @@ here: https://gist.github.com/4175776.
 <img src="http://img-fotki.yandex.ru/get/6505/14441195.26/0_6f0bc_d000a7a2_L.jpg"
 width="500" height="129" title="Borderd header" alt="Bordered header" border="0"/>
 
+## BEMHTML templates
+You can use BEMHTML templates not only for declaring output HTML tags but also
+for gerenating additional markup respondent of view.
+
+Just to play with it, let's place  a list of goods into the page. It is a
+separate `goods` block declared in BEMJSON page description and containing all
+the neccessary data.
+
+    {
+        block: 'goods',
+        goods: [
+            {
+                title: 'Apple iPhone 4S 32Gb',
+                image: 'http://mdata.yandex.net/i?path=b1004232748_img_id8368283111385023010.jpg',
+                price: '259',
+                url: '/'
+            },
+            {
+                title: 'Samsung Galaxy Ace S5830',
+                image: 'http://mdata.yandex.net/i?path=b0206005907_img_id5777488190397681906.jpg',
+                price: '73',
+                url: '/'
+            },
+            ...
+    }
+
+https://gist.github.com/4176078
+
+This block has to be implemented with BEMHTML technology in order to be turned
+into an appropriate piece of HTML. Also, it needs to be styled with CSS. So, you
+can create this block with all the default technologies by just removing `-T`
+flag.
+
+    $ bem create -l desktop.blocks -b goods
+
+Then, write BEMHTML code turning input data JSON into block elements and place it
+into `desktop.blocks/goods/goods.bemhtml` template file. Also, define what are
+the DOM nodes of the block and its elements by using `tag` mode.
+
+    block goods {
+
+        tag: 'ul'
+
+        ...
+
+        elem item, tag: 'li'
+
+        elem title, tag: 'h3'
+
+    }
+
+https://gist.github.com/4176118
+
+    <!DOCTYPE html>
+    <html class="i-ua_js_yes i-ua_css_standard">
+        <head>...</head>
+        <body class="b-page b-page__body">
+            <div class="b-page__body-i">
+                <div class="head">...</div>
+                <ul class="goods">
+                    <li class="goods__item">
+                        <h3 class="goods__title">Apple iPhone 4S 32Gb</h3>
+                        <img class="goods__image" src="http://mdata.yandex.net/i?path=b1004232748_img_id8368283111385023010.jpg"/>
+                        <span class="goods__price">259</span>
+                    </li>
+                    <li class="goods__item">...</li>
+                    <li class="goods__item">...</li>
+                </ul>
+            </div>
+        </body>
+    </html>
+
+Template can produce not only block elements but nested blocks as well. In this
+case, you can wrap price digitals with `b-link` block from `bem-bl` library.
+
+    {
+        elem: 'price',
+        content: {
+            block: 'b-link',
+            url: item.url,
+            content: item.price
+        }
+    }
+
+https://gist.github.com/4176996
+
+And one more trick. If you would like to avoid cascase when styling the block,
+mark this link as an element of `goods` block.
+
+    {
+        block: 'b-link',
+        mix: [{ block: 'goods', elem: 'link' }],
+        url: item.url,
+        content: item.price
+    }
+
+https://gist.github.com/4177113
+
+    ...
+    <ul class="goods">
+        <li class="goods__item">
+            <h3 class="goods__title">Apple iPhone 4S 32Gb</h3>
+            <img class="goods__image" src="http://mdata.yandex.net/i?path=b1004232748_img_id8368283111385023010.jpg"/>
+            <span class="goods__price">
+                <a class="b-link goods__link" href="/">259</a>
+            </span>
+        </li>
+        <li class="goods__item">...</li>
+        <li class="goods__item">...</li>
+    </ul>
+
+Then, mark elements corresponsing to new goods with a modifier and add some tricky
+layout nodes.<br/>
+https://gist.github.com/4177157
+
+You this code shapshot for block CSS: https://gist.github.com/4177163<br/>
+Notice, you do not need to create CSS file for the block here because it has
+already been produced when creating the block with all its defualt techs.
+
+<img src="http://img-fotki.yandex.ru/get/6508/14441195.26/0_6f0c7_e5284b82_L.jpg"
+width="500" height="368" title="List of goods" alt="List of goods" border="0"/>
+
+You also need some CSS for our arch-friend the IE browser since it is not in the
+list of default block technologies.
+
+    $ bem create block -l desktop.blocks/ -T ie.css goods
+
+Again, the content for the resulted `desktop.blocks/goods/goods.ie.css` file is
+already waiting for your on Gist: https://gist.github.com/4177174
+
