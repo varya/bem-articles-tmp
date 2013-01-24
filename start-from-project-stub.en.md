@@ -348,3 +348,21 @@ list of default block technologies.
 Again, the content for the resulted `desktop.blocks/goods/goods.ie.css` file is
 already waiting for your on Gist: https://gist.github.com/4177174
 
+## Block dependencies
+Besides declaring blocks in input JSON data you need to ensure linking
+corresponding templates, CSS and JavaScript to the page. You can do this by
+using special `deps.js` block technology for -- as you can guess -- defining
+block dependencies.
+
+    $ bem create -l desktop.blocks/ -T deps.js -b goods
+
+You can use dependency of loose type coded `shouldDeps` and declare that you
+need `b-link` block.
+
+    ({
+        shouldDeps: [
+            { block: 'b-link' }
+        ]
+    })
+
+https://gist.github.com/4177031
