@@ -2,8 +2,8 @@
 
 This article shows you how to develop an [online shop
 web page](http://toivonen.github.com/online-shop-dummy/desktop.bundles/index/index.html)
-using BEM principles in CSS, JavaScript and BEMHTML templates. While developing, we will use `bem
-tools` and its subcommand `bem server`.
+using BEM principles in CSS, JavaScript and BEMHTML templates. While developing,
+we will use `bem tools` and its subcommand `bem server`.
 
 <img
 src="http://img-fotki.yandex.ru/get/6505/14441195.26/0_6f0b2_557ef428_L.jpg"
@@ -11,13 +11,15 @@ width="500" height="351" title="Online shop web page" alt="Online shop web page"
 border="0"/>
 
 ## Tools
-You need a command-line toolkit [bem tools](https://github.com/bem/bem-tools) to begin with the project.
+You need a command-line toolkit [bem tools](https://github.com/bem/bem-tools) to
+begin with the project.
 Follow the installation steps in the corresponding repository.
 
 ## Start with a project repository
-The easiest way to start is to copy a similar project repository with suitable structure.
-We intend to use the full power of BEM technologies, so this [project-stub](https://github.com/bem/project-stub)
-will suit you just fine.
+The easiest way to start is to copy a similar project repository with suitable
+structure.<br/>
+We intend to use the full power of BEM technologies, so this
+[project-stub](https://github.com/bem/project-stub) will suit you just fine.
 
     $ git clone git://github.com/bem/project-stub.git my-pretty-project
     $ cd my-pretty-project/
@@ -28,28 +30,31 @@ Build the project by running a `make` command:
 
     $ make
 
-The first launch may take some time as required npm packadges are being installed in background.<br/>
+The first launch may take some time as required npm packadges are being
+installed in background.<br/>
 Upon completion, you'll see the following message:
 
    info: Server is listening on port 8080. Point your browser to http://localhost:8080/
 
-This means `bem server` is up and running; from this point on, your project is automatically rebuilt
-each time you change something.
+This means `bem server` is up and running; from this point on, your project is
+automatically rebuilt each time you change something.
 
 ## Changing pages
 You have just one page in your project to begin with:
-[index.html](http://localhost:8080/desktop.bundles/index/index.html). Try and open it in your browser.<br/>
-When opening the page for the first time, be prepared to wait a few seconds while `bem
-server` is loading all the libraries used for building the page.
+[index.html](http://localhost:8080/desktop.bundles/index/index.html). Try and
+open it in your browser.<br/>
+When opening the page for the first time, be prepared to wait a few seconds
+while `bem server` is loading all the libraries used for building the page.
 
-This project's structure presumes that blocks are stored under the `desktop.blocks` folder and
-pages under `desktop.bundles` folder.<br/>
-In fact, `desktop.bundles` may contain bundles consisting of blocks most commonly used on most
-of the pages, i.e. `common` block bundle, or all the blocks
+This project's structure presumes that blocks are stored under the
+`desktop.blocks` folder and pages under `desktop.bundles` folder.<br/>
+In fact, `desktop.bundles` may contain bundles consisting of blocks most
+commonly used on most of the pages, i.e. `common` block bundle, or all the blocks
 from all the pages, i.e. `all` block bundle. Finally, the simplest case:
 you can have a set of blocks for each page; it's how we will proceed.
 
-You can modify the page by changing the `desktop.bundles/index/index.bemjson.js` file.
+You can modify the page by changing the `desktop.bundles/index/index.bemjson.js`
+file.
 
 ### Defining a block in BEMJSON
 First, let's add `head` block to the page.
@@ -68,7 +73,8 @@ Refresh the page to see the corresponding `<div>`.
         </body>
     </html>
 
-On the next step, we add a search form, a logo, and describe layout inside the header.
+On the next step, we add a search form, a logo, and describe layout inside the
+header.
 
 Put a `layout` block along with its 2 elements (`left` and `right`) inside `head`.
 
@@ -121,10 +127,10 @@ to fill up the selector with CSS properties.<br/>
 You can just copy and paste from Gist: https://gist.github.com/4175598
 
 ## Using block library
-You do not need to implement web search form and logo blocks yourself; they are provided by [bem-bl block
-library](https://gist.github.com/4175598). So, you can just declare them when
-defining your page. This means pasting BEMJSON block definition into the 
-`desktop.bundles/index/index.bemjson.js` page file.
+You do not need to implement web search form and logo blocks yourself; they are
+provided by [bem-bl block library](https://gist.github.com/4175598). So, you can
+just declare them when defining your page. This means pasting BEMJSON block
+definition into the `desktop.bundles/index/index.bemjson.js` page file.
 
 We will use
 [b-searh](http://bem.github.com/bem-bl/sets/common-desktop/b-search/b-search.en.html)
@@ -144,8 +150,9 @@ alt="Using the block library" border="0"/>
 
 ### Redefining library blocks
 #### Redefining in CSS
-`b-logo` block provides just a piece of markup. It is developer's responsibility to create
-the needed CSS for the block because every new site design usually needs unique styles.
+`b-logo` block provides just a piece of markup. It is developer's responsibility
+to create the needed CSS for the block because every new site design usually
+needs unique styles.
 
 We will keep CSS rules for `b-logo` in its CSS file, which we need to create on
 the project block level:
