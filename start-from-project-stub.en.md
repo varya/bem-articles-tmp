@@ -171,3 +171,50 @@ https://gist.github.com/4195433
 src="http://img-fotki.yandex.ru/get/5708/14441195.26/0_6f0ba_bb628e4c_XL.jpg"
 width="800" height="141" title="Styled header" alt="Styled header"
 border="0"/>
+
+#### Redefining BEMHTML
+You need an additional container DOM node to make the page centered. So, we
+define template implementation for `b-page` block by creating the same block on
+the project level. We are going to use `BEMHTML` as a templating language.
+
+    $ bem create -l desktop.blocks/ -b b-page -T bemhtml
+
+Write code wrapping page content with an additional container node into the
+obtained `desktop.blocks/b-page/b-page.bemhtml` file.
+
+    block b-page, content: {
+        elem: 'body-i',
+        content: this.ctx.content
+    }
+
+https://gist.github.com/4175742
+
+    <!DOCTYPE html>
+    <html class="i-ua_js_yes i-ua_css_standard">
+        <head>...</head>
+        <body class="b-page b-page__body">
+            <div class="b-page__body-i">
+                <div class="head">
+                    <div class="layout">...</div>
+                </div>
+            </div>
+        </body>
+    </html>
+
+Then, create `b-page` block in CSS technology to style the result markup.
+
+    $ bem create -l desktop.blocks/ -T css -b b-page
+
+Do not hesitate to copy prepared CSS code for the newborn
+`desktop.blocks/b-page/b-page.css` file form here: https://gist.github.com/4175763
+
+Define `border` property for `head` block, so that you can see where it is.
+
+    $ bem create -l desktop.blocks/ -T css -b head
+
+Again, you can borrow the content for `desktop.blocks/head/head.css` file from
+here: https://gist.github.com/4175776.
+
+<img src="http://img-fotki.yandex.ru/get/6505/14441195.26/0_6f0bc_d000a7a2_L.jpg"
+width="500" height="129" title="Borderd header" alt="Bordered header" border="0"/>
+
