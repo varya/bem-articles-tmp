@@ -127,7 +127,7 @@ to fill up the selector with CSS properties.<br/>
 You can just copy and paste from Gist: https://gist.github.com/4175598
 
 ## Using block library
-You do not need to implement web search form and logo blocks yourself; they are
+You don't need to implement web search form and logo blocks yourself; they are
 provided by [bem-bl block library](https://gist.github.com/4175598). So, you can
 just declare them when defining your page. This means pasting BEMJSON block
 definition into the `desktop.bundles/index/index.bemjson.js` page file.
@@ -150,7 +150,7 @@ alt="Using the block library" border="0"/>
 
 ### Redefining library blocks
 #### Redefining in CSS
-`b-logo` block provides just a piece of markup. It is developer's responsibility
+`b-logo` block provides just a piece of markup. It is the developer's responsibility
 to create the needed CSS for the block because every new site design usually
 needs unique styles.
 
@@ -173,7 +173,7 @@ width="800" height="141" title="Styled header" alt="Styled header"
 border="0"/>
 
 #### Redefining BEMHTML
-You need an additional container DOM node to make the page centered. So, we
+You need an additional container DOM node to center the page. So, we
 define template implementation for `b-page` block by creating the same block on
 the project level. We are going to use `BEMHTML` as a templating language.
 
@@ -201,7 +201,7 @@ https://gist.github.com/4175742
         </body>
     </html>
 
-Then, create `b-page` block in CSS technology to style the result markup.
+Then, create `b-page` block in CSS technology to style the resulting markup.
 
     $ bem create -l desktop.blocks/ -T css -b b-page
 
@@ -304,7 +304,7 @@ case, you can wrap price digitals with `b-link` block from `bem-bl` library.
 
 https://gist.github.com/4176996
 
-And one more trick. If you would like to avoid cascase when styling the block,
+And one more trick. If you would like to avoid cascade when styling the block,
 mark this link as an element of `goods` block.
 
     {
@@ -329,23 +329,23 @@ https://gist.github.com/4177113
         <li class="goods__item">...</li>
     </ul>
 
-Then, mark elements corresponsing to new goods with a modifier and add some tricky
-layout nodes.<br/>
+Then, mark elements corresponsing to new goods with a modifier and with a bit of
+skill on your part you can add some layout nodes.<br/>
 https://gist.github.com/4177157
 
-You this code shapshot for block CSS: https://gist.github.com/4177163<br/>
-Notice, you do not need to create CSS file for the block here because it has
-already been produced when creating the block with all its defualt techs.
+Use this code snapshot for block CSS: https://gist.github.com/4177163<br/>
+Notice, you don't need to create CSS file for the block here because it has
+already been produced when creating the block with all its default techs.
 
 <img src="http://img-fotki.yandex.ru/get/6508/14441195.26/0_6f0c7_e5284b82_L.jpg"
 width="500" height="368" title="List of goods" alt="List of goods" border="0"/>
 
-You also need some CSS for our arch-friend the IE browser since it is not in the
+You also need some CSS for our dear friend, the IE browser, since it is not in the
 list of default block technologies.
 
     $ bem create block -l desktop.blocks/ -T ie.css goods
 
-Again, the content for the resulted `desktop.blocks/goods/goods.ie.css` file is
+Again, the content for the resulting `desktop.blocks/goods/goods.ie.css` file is
 already waiting for your on Gist: https://gist.github.com/4177174
 
 ## Block dependencies
@@ -356,7 +356,7 @@ block dependencies.
 
     $ bem create -l desktop.blocks/ -T deps.js -b goods
 
-You can use dependency of loose type coded `shouldDeps` and declare that you
+You can use moderate dependency coded `shouldDeps` and declare that you
 need `b-link` block.
 
     ({
