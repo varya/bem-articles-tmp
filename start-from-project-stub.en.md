@@ -371,3 +371,57 @@ need `b-link` block.
     })
 
 https://gist.github.com/4177031
+
+## Using libraries
+It will be nice if every position in the list is represented as a rectangle with
+a shadow. We can borrow a block from [a friend's of mine block
+library](https://github.com/john-johnson/j).<br/>
+It provides just one block named `box` doing all we need.
+
+You should declare library repository URL in `./bem/make.js` file to get its
+code into your project.
+
+    getLibraries: function() {
+
+        return {
+            'bem-bl': {
+                type: 'git',
+                url: 'git://github.com/bem/bem-bl.git',
+                treeish: '0.3'
+            },
+            'bemhtml' : {
+                type: 'git',
+                url: 'git://github.com/bem/bemhtml.git'
+            },
+            'john-lib' : {
+                type: 'git',
+                url: 'git://github.com/john-johnson/j.git'
+            }
+        };
+
+    }
+
+https://gist.github.com/4177229
+
+Then, make your pages to take blocks from the block level provided by the library
+You can do this by tuning bundle configuration in `desktop.bundles/.bem/level.js`.
+
+    exports.getConfig = function() {
+
+        return BEM.util.extend(this.__base() || {}, {
+            bundleBuildLevels: this.resolvePaths([
+                '../../bem-bl/blocks-common',
+                '../../bem-bl/blocks-desktop',
+                '../../bemhtml/common.blocks',
+                '../../john-lib/blocks/',
+                '../../desktop.blocks'
+            ])
+        });
+
+    };
+
+https://gist.github.com/4177250
+
+Unfortunately, you need to restart `bem server` after chaning configuration.
+Cancel the current process and run `make server` again.<br/>
+BEM tools` guys promise taking away this need to restart in the future versions.
