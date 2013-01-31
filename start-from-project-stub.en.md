@@ -575,3 +575,35 @@ In this case the block is to react on setting and removing `closed` modifier.
     }
 
 https://gist.github.com/4195879
+
+## Creating pages
+In BEM world a page is also a block on a special level. So, you can use
+`bem create` for pages as well.
+
+    $ bem create -l desktop.bundles -b contact
+
+As you can see, there is no `-T` flag here. That's because `desktop.bundles`
+block level is tuned to know `BEMJSON` technology as a default for a block.<br/>
+That results into `desktop.bundles/contact/contact.bemjson.js` file filled with
+dummy page content.
+
+You can load a new page in browser
+http://localhost:8080/desktop.bundles/contact/contact.html <br/>
+When required at the first time `bem server` builds it.
+
+## Production deployment
+When developing, every time you require a page in a browser `bem server`
+rebuilds what has to be rebuilt after your changes.
+
+For production deployment all the pages have to be built, no matter if someting
+was not changed. You can use `bem make` for such a building.<br/>
+Recommended to run local project version:
+
+    $ ./node_modules/bem/bin/bem make
+
+-------------
+
+<sup>creadits</sup>
+Many thanks to [tyv](https://github.com/tyv) and
+[gela-d](https://github.com/gela-d) for this cute HTML/CSS markup.<br/>
+My gratitude to [ingdir](https://github.com/ingdir) for his tuneful english.
