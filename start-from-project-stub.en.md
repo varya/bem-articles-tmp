@@ -425,3 +425,84 @@ https://gist.github.com/4177250
 Unfortunately, you need to restart `bem server` after chaning configuration.
 Cancel the current process and run `make server` again.<br/>
 BEM tools` guys promise taking away this need to restart in the future versions.
+
+## Mix for blocks and elements
+Having linked the library you can use `box` block. It could be just a wrapper,
+but for saving some markup you can `mix` blocks.
+
+One of the possible ways to mix blocks is to declare this mix in BEMJSON input
+data.<br/>
+Here you can mix `head` and `box` blocks by chaning the page.
+
+    {
+        block: 'head',
+        mix: [ { block: 'box' } ],
+        content: ...
+    }
+
+https://gist.github.com/4177292
+
+    <!DOCTYPE html>
+    <html class="i-ua_js_yes i-ua_css_standard">
+        <head>...</head>
+        <body class="b-page b-page__body">
+            <div class="b-page__body-i">
+                <div class="head box">
+                    <div class="layout">...</div>
+                </div>
+                <ul class="goods">...</ul>
+            </div>
+        </body>
+    </html>
+
+Don't forget to declare that `head` block requires `box`.
+
+    $ bem create -l desktop.blocks/ -T deps.js -b head
+
+    ({
+        shouldDeps: [
+            { block: 'box' }
+        ]
+    })
+
+https://gist.github.com/4235143
+
+<img src="http://img-fotki.yandex.ru/get/5803/14441195.26/0_6f0c4_4e3f9249_XL.jpg" width="800"
+height="238" title="Head + Box = ❤" alt="Head + Box = ❤" border="0"/>
+
+You also can mix an element and a block.<br/>
+Let's write that every `item` element of `goods` block is at the same time `box`
+block.
+
+    content.push({
+        elem: 'item',
+        mods: mods,
+        mix: [{ block: 'box' }],
+        content: ...
+
+https://gist.github.com/4177350
+
+    <!DOCTYPE html>
+    <html class="i-ua_js_yes i-ua_css_standard">
+        <head>...</head>
+        <body class="b-page b-page__body">
+            <div class="b-page__body-i">
+                <div class="head box">
+                    <div class="layout">...</div>
+                </div>
+                <ul class="goods">
+                    <li class="goods__item box">...</li>
+                    <li class="goods__item box">...</li>
+                    <li class="goods__item box">...</li>
+                    <li class="goods__item goods__item_new_yes box">...</li>
+                    <li class="goods__item box">...</li>
+                    <li class="goods__sizer">...</li>
+                    ...
+                </ul>
+            </div>
+        </body>
+    </html>
+
+
+<img src="http://img-fotki.yandex.ru/get/6511/14441195.26/0_6f0c5_bcef9ce9_L.jpg"
+width="500" height="286" title="Inboxed items" alt="Inboxed items" border="0"/>
