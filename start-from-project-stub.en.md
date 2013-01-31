@@ -31,7 +31,12 @@ Build the project by running a `make` command:
     $ make
 
 The first launch may take some time as required npm packadges are being
-installed in background.<br/>
+installed in background.
+
+For development you can run
+
+    $ make server
+
 Upon completion, you'll see the following message:
 
    info: Server is listening on port 8080. Point your browser to http://localhost:8080/
