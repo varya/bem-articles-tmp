@@ -506,3 +506,72 @@ https://gist.github.com/4177350
 
 <img src="http://img-fotki.yandex.ru/get/6511/14441195.26/0_6f0c5_bcef9ce9_L.jpg"
 width="500" height="286" title="Inboxed items" alt="Inboxed items" border="0"/>
+
+## Declarative JavaScript
+###JavaScript for a block
+`box` block borrowed from my friend's library can be rolled up. This is its
+dynamic functionality coded in JavaScript.
+
+If you'd like to use this in `head`, change the block BEMJSON declaration, and
+set that mixed `box` block has JavaScript implementation.
+
+    mix: [{ block: 'box', js: true }]
+
+https://gist.github.com/4202622
+
+It is required to have `swither` element in the block.
+
+    content: [
+        {
+            block: 'layout',
+            ...
+        },
+        {
+            block: 'box',
+            elem: 'switcher'
+        }
+    ]
+
+https://gist.github.com/4202651
+
+With that you have a block with clickable arrow-shaped element which rolls the
+block up.
+
+<img src="http://img-fotki.yandex.ru/get/4603/14441195.26/0_6f0c8_b65eea6_L.jpg"
+width="318" height="264" title="Arrow" alt="Arrow" border="0"/>
+
+### Redefining JavaScript
+What if you are not sartisfied with the dynamic functionality provided with `box`
+block? Maybe you would like it to roll up and left. Otherwise, you cannot change
+code of the library you borrowed if it's not yours.<br/>
+But thanks to using [i-bem
+block-framework](https://github.com/bem/bem-bl/tree/master/blocks-common/i-bem)
+you can change (redefine or extend) block JavaScript on your own level.
+
+    bem create -l desktop.blocks -T js -b box
+
+Remove everything but `setMod` section from the resulting `desktop.blocks/box/box.js`
+file.
+
+    onSetMod : {
+
+    }
+
+https://gist.github.com/4195865
+
+In this case the block is to react on setting and removing `closed` modifier.
+
+    onSetMod : {
+
+        'closed': {
+            'yes': function() {
+                // some functionality here
+            },
+            '': function() {
+                // some functionality here
+            }
+        }
+
+    }
+
+https://gist.github.com/4195879
