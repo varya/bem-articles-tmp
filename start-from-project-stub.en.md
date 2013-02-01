@@ -62,7 +62,7 @@ You can modify the page by changing the `desktop.bundles/index/index.bemjson.js`
 file.
 
 ### Defining a block in BEMJSON
-First, let's add `head` block to the page.
+First, let's add a `head` block to the page.
 
     { block: 'head' }
 
@@ -117,24 +117,24 @@ https://gist.github.com/4175573
         </body>
     </html>
 
-This markup requires CSS rules to be described.
-Or, saying the same in BEM terms, you have to implement `layout` block in CSS.
+This markup requires CSS rules to be added.
+Or, rewording the same with BEM terms, you have to implement a `layout` block in CSS.
 
 ## Creating a new block
-You need to use `bem create` to get a new block file for the technology
+Use `bem create` to get a new block file for the technology
 you are going to work with.
 
     $ bem create -l desktop.blocks/ -T css -b layout
 
-Running this command will create `desktop.blocks/layout/layout.css`, and inside
-you will find a CSS selector that matches the `layout` block. It's now your part
-to fill up the selector with CSS properties.<br/>
-You can just copy and paste from Gist: https://gist.github.com/4175598
+Running this command creates `desktop.blocks/layout/layout.css`, and inside
+you will find a CSS selector that matches the `layout` block. It's where you step in and
+fill up the selector with CSS properties.<br/>
+Or just copy and paste from Gist: https://gist.github.com/4175598
 
-## Using block library
+## Using the block library
 You don't need to implement web search form and logo blocks yourself; they are
-provided by [bem-bl block library](https://gist.github.com/4175598). So, you can
-just declare them when defining your page. This means pasting BEMJSON block
+provided by the [bem-bl block library](https://gist.github.com/4175598). So, you can
+just declare them when defining your page. This means pasting a BEMJSON block
 definition into the `desktop.bundles/index/index.bemjson.js` page file.
 
 We will use
@@ -144,9 +144,9 @@ and
 blocks.<br/>
 https://gist.github.com/4175640
 
-For the logo, you can use our [cute BEM
+You can use our [cute BEM
 image](http://toivonen.github.com/online-shop-dummy/desktop.blocks/b-logo/b-logo.png)
-or any other pic.
+for the logo, or pick any other image you like :-)
 
 <img
 src="http://img-fotki.yandex.ru/get/4119/14441195.26/0_6f0b9_2d1d77a3_XL.jpg"
@@ -155,8 +155,8 @@ alt="Using the block library" border="0"/>
 
 ### Redefining library blocks
 #### Redefining in CSS
-`b-logo` block provides just a piece of markup. It is the developer's responsibility
-to create the needed CSS for the block because every new site design usually
+The `b-logo` block provides just a piece of markup. It is developer's responsibility
+to create the necessary CSS for the block because every new design usually
 needs unique styles.
 
 We will keep CSS rules for `b-logo` in its CSS file, which we need to create on
@@ -166,7 +166,7 @@ the project block level:
 
 Then, save some time and copy CSS from here: https://gist.github.com/4175675
 
-The same can be done for `b-search` block:
+The same can be done for a `b-search` block:
 
     $ bem create -l desktop.blocks/ -T css -b b-search
 
@@ -179,13 +179,13 @@ border="0"/>
 
 #### Redefining BEMHTML
 You need an additional container DOM node to center the page. So, we
-define template implementation for `b-page` block by creating the same block on
+define a template implementation for the `b-page` block by creating the same block on
 the project level. We are going to use `BEMHTML` as a templating language.
 
     $ bem create -l desktop.blocks/ -b b-page -T bemhtml
 
-Write code wrapping page content with an additional container node into the
-obtained `desktop.blocks/b-page/b-page.bemhtml` file.
+Add code that wraps the page contents with an additional container node; put it into the
+newly created `desktop.blocks/b-page/b-page.bemhtml` file.
 
     block b-page, content: {
         elem: 'body-i',
@@ -206,29 +206,29 @@ https://gist.github.com/4175742
         </body>
     </html>
 
-Then, create `b-page` block in CSS technology to style the resulting markup.
+Then, implement the `b-page` block in CSS technology to style the resulting markup.
 
     $ bem create -l desktop.blocks/ -T css -b b-page
 
-Do not hesitate to copy prepared CSS code for the newborn
-`desktop.blocks/b-page/b-page.css` file form here: https://gist.github.com/4175763
+Copy CSS code for the newborn
+`desktop.blocks/b-page/b-page.css` file from here: https://gist.github.com/4175763
 
-Define `border` property for `head` block, so that you can see where it is.
+Define a `border` property for the `head` block so that its placement would be visible.
 
     $ bem create -l desktop.blocks/ -T css -b head
 
-Again, you can borrow the content for `desktop.blocks/head/head.css` file from
+Again, you can borrow contents for `desktop.blocks/head/head.css` file from
 here: https://gist.github.com/4175776.
 
 <img src="http://img-fotki.yandex.ru/get/6505/14441195.26/0_6f0bc_d000a7a2_L.jpg"
-width="500" height="129" title="Borderd header" alt="Bordered header" border="0"/>
+width="500" height="129" title="Bordered header" alt="Bordered header" border="0"/>
 
 ## BEMHTML templates
-You can use BEMHTML templates not only for declaring output HTML tags but also
-for gerenating additional markup respondent of view.
+You can use BEMHTML templates not only to declare the HTML tags to output but also
+to generate additional markup depending on view.
 
-Just to play with it, let's place  a list of goods into the page. It is a
-separate `goods` block declared in BEMJSON page description and containing all
+Just to get the idea, let's place a list of goods into the page. It is a
+separate `goods` block declared in a BEMJSON page description and containing all
 the neccessary data.
 
     {
@@ -258,9 +258,9 @@ flag.
 
     $ bem create -l desktop.blocks -b goods
 
-Then, write BEMHTML code turning input data JSON into block elements and place it
-into `desktop.blocks/goods/goods.bemhtml` template file. Also, define what are
-the DOM nodes of the block and its elements by using `tag` mode.
+Then, write BEMHTML code turning the input data JSON into block elements and place it
+into the `desktop.blocks/goods/goods.bemhtml` template file. Also, define DOM nodes
+of the block and its elements by using a `tag` mode.
 
     block goods {
 
@@ -295,8 +295,8 @@ https://gist.github.com/4176118
         </body>
     </html>
 
-Template can produce not only block elements but nested blocks as well. In this
-case, you can wrap price digitals with `b-link` block from `bem-bl` library.
+Templates can produce not only block elements but nested blocks as well. In this
+example, you can wrap price values with a `b-link` block from the `bem-bl` library.
 
     {
         elem: 'price',
@@ -309,7 +309,7 @@ case, you can wrap price digitals with `b-link` block from `bem-bl` library.
 
 https://gist.github.com/4176996
 
-And one more trick. If you would like to avoid cascade when styling the block,
+An extra trick: if you would like to avoid cascade when styling the block,
 mark this link as an element of `goods` block.
 
     {
@@ -334,34 +334,34 @@ https://gist.github.com/4177113
         <li class="goods__item">...</li>
     </ul>
 
-Then, mark elements corresponsing to new goods with a modifier and with a bit of
+Then, use a a modifier to mark elements corresponding to new goods, and with a bit of
 skill on your part you can add some layout nodes.<br/>
 https://gist.github.com/4177157
 
 Use this code snapshot for block CSS: https://gist.github.com/4177163<br/>
-Notice, you don't need to create CSS file for the block here because it has
-already been produced when creating the block with all its default techs.
+Notice that you don't need to create a CSS file for the block here because it had
+already been generated when creating the block using all the default technologies.
 
 <img src="http://img-fotki.yandex.ru/get/6508/14441195.26/0_6f0c7_e5284b82_L.jpg"
 width="500" height="368" title="List of goods" alt="List of goods" border="0"/>
 
-You also need some CSS for our dear friend, the IE browser, since it is not in the
+You also need some extra CSS for our dearest friend, the IE browser, since it is not among the
 list of default block technologies.
 
     $ bem create block -l desktop.blocks/ -T ie.css goods
 
-Again, the content for the resulting `desktop.blocks/goods/goods.ie.css` file is
+Again, contents for the resulting `desktop.blocks/goods/goods.ie.css` file is
 already waiting for your on Gist: https://gist.github.com/4177174
 
 ## Block dependencies
-Besides declaring blocks in input JSON data you need to ensure linking
-corresponding templates, CSS and JavaScript to the page. You can do this by
-using special `deps.js` block technology for -- as you can guess -- defining
+Besides declaring blocks in input JSON data you need to make sure the 
+corresponding templates, CSS and JavaScript are linked to the page. You can do this by
+using a special `deps.js` block technology which, as you probably guess, is used to describe
 block dependencies.
 
     $ bem create -l desktop.blocks/ -T deps.js -b goods
 
-You can use moderate dependency coded `shouldDeps` and declare that you
+You can use moderate dependency type codenamed `shouldDeps` and declare that you
 need `b-link` block.
 
     ({
@@ -373,10 +373,10 @@ need `b-link` block.
 https://gist.github.com/4177031
 
 ## Using libraries
-It will be nice if every position in the list is represented as a rectangle with
+It would be nice to have each entry in the list rendered as a rectangle with
 a shadow. We can borrow a block from [a friend's of mine block
 library](https://github.com/john-johnson/j).<br/>
-It provides just one block named `box` doing all we need.
+It provides just one block named `box` that does all we need.
 
 You should declare library repository URL in `./bem/make.js` file to get its
 code into your project.
@@ -403,8 +403,8 @@ code into your project.
 
 https://gist.github.com/4177229
 
-Then, make your pages to take blocks from the block level provided by the library
-You can do this by tuning bundle configuration in `desktop.bundles/.bem/level.js`.
+Then, make your pages take blocks from the block level provided by that library.
+Do this by tuning a bundle configuration in `desktop.bundles/.bem/level.js`.
 
     exports.getConfig = function() {
 
@@ -422,17 +422,17 @@ You can do this by tuning bundle configuration in `desktop.bundles/.bem/level.js
 
 https://gist.github.com/4177250
 
-Unfortunately, you need to restart `bem server` after chaning configuration.
-Cancel the current process and run `make server` again.<br/>
-BEM tools` guys promise taking away this need to restart in the future versions.
+Unfortunately, you need to restart `bem server` after changing the configuration.
+Kill the current process and run `make server` again.<br/>
+Maintainers of BEM tools promise to take away this need to restart in future versions.
 
 ## Mix for blocks and elements
-Having linked the library you can use `box` block. It could be just a wrapper,
-but for saving some markup you can `mix` blocks.
+Having linked the library you can use the `box` block. It could be just a wrapper,
+but you can also `mix` blocks to avoid nested markup.
 
 One of the possible ways to mix blocks is to declare this mix in BEMJSON input
 data.<br/>
-Here you can mix `head` and `box` blocks by chaning the page.
+Here you can mix `head` and `box` blocks by changing the page.
 
     {
         block: 'head',
@@ -455,7 +455,7 @@ https://gist.github.com/4177292
         </body>
     </html>
 
-Don't forget to declare that `head` block requires `box`.
+Don't forget to declare that a `head` block requires a `box` block.
 
     $ bem create -l desktop.blocks/ -T deps.js -b head
 
@@ -470,8 +470,8 @@ https://gist.github.com/4235143
 <img src="http://img-fotki.yandex.ru/get/5803/14441195.26/0_6f0c4_4e3f9249_XL.jpg" width="800"
 height="238" title="Head + Box = ❤" alt="Head + Box = ❤" border="0"/>
 
-You also can mix an element and a block.<br/>
-Let's write that every `item` element of `goods` block is at the same time `box`
+You can also mix an element with a block.<br/>
+Let's specify that each `item` element in a `goods` block is at the same time a `box`
 block.
 
     content.push({
@@ -509,17 +509,17 @@ width="500" height="286" title="Inboxed items" alt="Inboxed items" border="0"/>
 
 ## Declarative JavaScript
 ###JavaScript for a block
-`box` block borrowed from my friend's library can be rolled up. This is its
+The `box` block borrowed from my friend's library could be animated (rolled up, for example). This is its
 dynamic functionality coded in JavaScript.
 
 If you'd like to use this in `head`, change the block BEMJSON declaration, and
-set that mixed `box` block has JavaScript implementation.
+set that mixed `box` block has a JavaScript implementation.
 
     mix: [{ block: 'box', js: true }]
 
 https://gist.github.com/4202622
 
-It is required to have `swither` element in the block.
+It is required to have a `switcher` element in the block.
 
     content: [
         {
@@ -534,17 +534,17 @@ It is required to have `swither` element in the block.
 
 https://gist.github.com/4202651
 
-With that you have a block with clickable arrow-shaped element which rolls the
+With that you have a block with a clickable arrow-shaped element which rolls the
 block up.
 
 <img src="http://img-fotki.yandex.ru/get/4603/14441195.26/0_6f0c8_b65eea6_L.jpg"
 width="318" height="264" title="Arrow" alt="Arrow" border="0"/>
 
 ### Redefining JavaScript
-What if you are not sartisfied with the dynamic functionality provided with `box`
-block? Maybe you would like it to roll up and left. Otherwise, you cannot change
-code of the library you borrowed if it's not yours.<br/>
-But thanks to using [i-bem
+What if you are not satisfied with the dynamic functionality provided with the `box`
+block? Maybe you would like it to roll up and left. Usually, you cannot alter the
+code of the library you borrowed your block from as it's not yours.<br/>
+But thanks to using the [i-bem
 block-framework](https://github.com/bem/bem-bl/tree/master/blocks-common/i-bem)
 you can change (redefine or extend) block JavaScript on your own level.
 
@@ -559,7 +559,7 @@ file.
 
 https://gist.github.com/4195865
 
-In this case the block is to react on setting and removing `closed` modifier.
+In this example the block is told to respond to setting and removing a `closed` modifier.
 
     onSetMod : {
 
@@ -577,33 +577,33 @@ In this case the block is to react on setting and removing `closed` modifier.
 https://gist.github.com/4195879
 
 ## Creating pages
-In BEM world a page is also a block on a special level. So, you can use
+In the BEM world, a page is also a block on a special level. So, you can use
 `bem create` for pages as well.
 
     $ bem create -l desktop.bundles -b contact
 
 As you can see, there is no `-T` flag here. That's because `desktop.bundles`
-block level is tuned to know `BEMJSON` technology as a default for a block.<br/>
-That results into `desktop.bundles/contact/contact.bemjson.js` file filled with
-dummy page content.
+block level defaults to `BEMJSON` technology.<br/>
+That results in a `desktop.bundles/contact/contact.bemjson.js` file being filled with
+dummy page contents.
 
-You can load a new page in browser
+Load a new page in a browser:
 http://localhost:8080/desktop.bundles/contact/contact.html <br/>
-When required at the first time `bem server` builds it.
+`bem server` builds it for us upon first access.
 
 ## Production deployment
-When developing, every time you require a page in a browser `bem server`
-rebuilds what has to be rebuilt after your changes.
+When developing, every time you request a page in a browser, `bem server`
+rebuilds what has to be rebuilt following your changes.
 
-For production deployment all the pages have to be built, no matter if someting
-was not changed. You can use `bem make` for such a building.<br/>
-Recommended to run local project version:
+For production deployment, all pages have to be built, no matter if they were changed or not.
+You can use `bem make` for that.<br/>
+It's recommended to run a local project version:
 
     $ ./node_modules/bem/bin/bem make
 
 -------------
 
-<sup>creadits</sup>
+<sup>Credits</sup>
 Many thanks to [tyv](https://github.com/tyv) and
-[gela-d](https://github.com/gela-d) for this cute HTML/CSS markup.<br/>
-My gratitude to [ingdir](https://github.com/ingdir) for his tuneful english.
+[gela-d](https://github.com/gela-d) for cute HTML/CSS markup,
+and to [ingdir](https://github.com/ingdir) for his help with the English version.
