@@ -13,7 +13,7 @@ border="0"/>
 ## Tools
 You need a command-line toolkit [bem tools](https://github.com/bem/bem-tools) to
 begin with the project.
-Follow installation steps in the corresponding repository.
+Follow the installation steps in the corresponding repository.
 
 ## Start with a project repository
 The easiest way to start is to copy a similar project repository with suitable
