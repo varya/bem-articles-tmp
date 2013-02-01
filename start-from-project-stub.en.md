@@ -68,7 +68,6 @@ First, let's add `head` block to the page.
 
 From this point on, find code snapshots on Gist: https://gist.github.com/4175550
 
-
 Refresh the page to see the corresponding `<div>`.
 
     <!DOCTYPE html>
