@@ -118,7 +118,7 @@ https://gist.github.com/4175573
     </html>
 
 This markup requires CSS rules to be described.
-Or, saying the same in BEM terms, you have to implement `layout` block in CSS.
+Or, to say the same in the terms of BEM, you have to implement `layout` block in CSS.
 
 ## Creating a new block
 You need to use `bem create` to get a new block file for the technology
@@ -126,10 +126,10 @@ you are going to work with.
 
     $ bem create -l desktop.blocks/ -T css -b layout
 
-Running this command will create `desktop.blocks/layout/layout.css`, and inside
-you will find a CSS selector that matches the `layout` block. It's now your part
+This command will create `desktop.blocks/layout/layout.css` with
+a CSS selector that matches the `layout` block. It's now your part
 to fill up the selector with CSS properties.<br/>
-You can just copy and paste from Gist: https://gist.github.com/4175598
+You can copy and paste implementation from Gist: https://gist.github.com/4175598
 
 ## Using block library
 You don't need to implement web search form and logo blocks yourself; they are
@@ -159,7 +159,7 @@ alt="Using the block library" border="0"/>
 to create the needed CSS for the block because every new site design usually
 needs unique styles.
 
-We will keep CSS rules for `b-logo` in its CSS file, which we need to create on
+We will keep CSS rules for `b-logo` in its CSS file, has to be created on
 the project block level:
 
     $ bem create -l desktop.blocks/ -T css -b b-logo
@@ -603,7 +603,7 @@ Recommended to run local project version:
 
 -------------
 
-<sup>creadits</sup>
+<sup>credits</sup>
 Many thanks to [tyv](https://github.com/tyv) and
 [gela-d](https://github.com/gela-d) for this cute HTML/CSS markup.<br/>
 My gratitude to [ingdir](https://github.com/ingdir) for his tuneful english.
