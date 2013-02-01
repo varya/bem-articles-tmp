@@ -131,7 +131,7 @@ you will find a CSS selector that matches the `layout` block. It's where you ste
 fill up the selector with CSS properties.<br/>
 Or just copy and paste from Gist: https://gist.github.com/4175598
 
-## Using the block library
+## Using a block library
 You don't need to implement web search form and logo blocks yourself; they are
 provided by the [bem-bl block library](https://gist.github.com/4175598). So, you can
 just declare them when defining your page. This means pasting a BEMJSON block
@@ -155,7 +155,7 @@ alt="Using the block library" border="0"/>
 
 ### Redefining library blocks
 #### Redefining in CSS
-The `b-logo` block provides just a piece of markup. It is developer's responsibility
+The `b-logo` block provides just a piece of markup. It is the developer's responsibility
 to create the necessary CSS for the block because every new design usually
 needs unique styles.
 
@@ -184,7 +184,7 @@ the project level. We are going to use `BEMHTML` as a templating language.
 
     $ bem create -l desktop.blocks/ -b b-page -T bemhtml
 
-Add code that wraps the page contents with an additional container node; put it into the
+Add some code to wrap the page contents with an additional container node; put it into the
 newly created `desktop.blocks/b-page/b-page.bemhtml` file.
 
     block b-page, content: {
@@ -295,7 +295,7 @@ https://gist.github.com/4176118
         </body>
     </html>
 
-Templates can produce not only block elements but nested blocks as well. In this
+Templates can produce not only nested elements but nested blocks as well. In this
 example, you can wrap price values with a `b-link` block from the `bem-bl` library.
 
     {
@@ -334,13 +334,13 @@ https://gist.github.com/4177113
         <li class="goods__item">...</li>
     </ul>
 
-Then, use a a modifier to mark elements corresponding to new goods, and with a bit of
+Then, use a a modifier to mark new items corresponding to new goods, and with a bit of
 skill on your part you can add some layout nodes.<br/>
 https://gist.github.com/4177157
 
 Use this code snapshot for block CSS: https://gist.github.com/4177163<br/>
-Notice that you don't need to create a CSS file for the block here because it had
-already been generated when creating the block using all the default technologies.
+Notice that you don't need to create a CSS file for the block here because it had already
+been generated when creating the block; CSS is one of the block's default technologies.
 
 <img src="http://img-fotki.yandex.ru/get/6508/14441195.26/0_6f0c7_e5284b82_L.jpg"
 width="500" height="368" title="List of goods" alt="List of goods" border="0"/>
@@ -403,7 +403,7 @@ code into your project.
 
 https://gist.github.com/4177229
 
-Then, make your pages take blocks from the block level provided by that library.
+Then, make your pages take blocks from the block level provided by the library.
 Do this by tuning a bundle configuration in `desktop.bundles/.bem/level.js`.
 
     exports.getConfig = function() {
@@ -509,11 +509,11 @@ width="500" height="286" title="Inboxed items" alt="Inboxed items" border="0"/>
 
 ## Declarative JavaScript
 ###JavaScript for a block
-The `box` block borrowed from my friend's library could be animated (rolled up, for example). This is its
+The `box` block borrowed from my friend's library supports roll up animation. This is its
 dynamic functionality coded in JavaScript.
 
 If you'd like to use this in `head`, change the block BEMJSON declaration, and
-set that mixed `box` block has a JavaScript implementation.
+set that mixed `box` block uses its JavaScript implementation.
 
     mix: [{ block: 'box', js: true }]
 
@@ -582,8 +582,8 @@ In the BEM world, a page is also a block on a special level. So, you can use
 
     $ bem create -l desktop.bundles -b contact
 
-As you can see, there is no `-T` flag here. That's because `desktop.bundles`
-block level defaults to `BEMJSON` technology.<br/>
+As you can see, there is no `-T` flag here. That's because the `desktop.bundles`
+block level implementation defaults to `BEMJSON` technology.<br/>
 That results in a `desktop.bundles/contact/contact.bemjson.js` file being filled with
 dummy page contents.
 
