@@ -50,7 +50,7 @@ A chair is to sit on, a cupboard it to keep the kitchen things. A bed is to lay 
   </tr></table>
 To operate the blocks, it's good to name them. Here there are a `Menu`, a `Calendar` control, a `Footer`, a `Tabbed pane`, a `Dropdown` and a `Search` blocks.
 Futhermore, some blocks are large. They usually preserve other blocks. But they still are solid independent pieces.
-<table>
+<table border="0">
     <tr>
     	<td colspan="2">
     	    <img src="http://img-fotki.yandex.ru/get/4120/14441195.26/0_711dd_3d4b199_XL.jpg" width="800" height="77" title="" alt="" border="0"/>
@@ -75,3 +75,20 @@ A chair is to sit on, a cupboard it to keep the kitchen things. A bed is to lay 
         </td>
     </tr></table>
 Here you can see the `Head` block that contains some others.
+### Block HTML representation
+*Indeed, behind the scenes there are our dear HTML and CSS.*
+<img src="http://img-fotki.yandex.ru/get/5626/14441195.26/0_711e1_e0ab223a_XL.jpg" width="645" height="46" title="" alt="" border="0"/>
+Each block is represented by a piece of HTML markup. To style the block we write CSS rules, as usual.<br/>`Menu` block is an `ul` tag and its content.
+    <ul class="menu">        <li><a href="/new">New titiles</a></li>        <li><a href="/soon">Coming soon</a></li>        <li><a href="/best">Bestsellers</a></li>        ...
+
+<img src="http://img-fotki.yandex.ru/get/5634/14441195.26/0_711db_81f5c441_L.jpg" width="500" height="47" title="" alt="" border="0"/>
+
+The same works for the `Search` block, that is represented by `div` tag with some content.
+
+    <div class="search">        <input type="text" name="search" value="..."/>        <input type="button" name="sbmt" value="Search"/>    </div>
+The last example, `Tabbed Pane` block, which is also a combination of HTML and CSS.
+
+<img src="http://img-fotki.yandex.ru/get/6439/14441195.26/0_711dc_2f5ffa46_M.jpg" width="300" style="float: left" height="259" title="" alt="" border="0"/>
+
+    <div class="tabbed-pane">        <ul>            <li>Bestsellers</li><li>...</li>        </ul>        <div>           The Casual Vacancy, J.K. Rowling        </div>     </div>
+ <div style="clear:both"></div>
