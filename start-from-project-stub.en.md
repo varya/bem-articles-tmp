@@ -295,7 +295,7 @@ https://gist.github.com/4176118
         </body>
     </html>
 
-Templates can produce not only nested elements but nested blocks as well. In this
+Templates can produce not only nested elements, but nested blocks as well. In this
 example, you can wrap price values with a `b-link` block from the `bem-bl` library.
 
     {
@@ -334,7 +334,7 @@ https://gist.github.com/4177113
         <li class="goods__item">...</li>
     </ul>
 
-Then, use a a modifier to mark new items corresponding to new goods, and with a bit of
+Then, use a modifier to mark new items corresponding to new goods, and with a bit of
 skill on your part you can add some layout nodes.<br/>
 https://gist.github.com/4177157
 
@@ -374,7 +374,7 @@ https://gist.github.com/4177031
 
 ## Using libraries
 It would be nice to have each entry in the list rendered as a rectangle with
-a shadow. We can borrow a block from [a friend's of mine block
+a shadow. We can borrow a block from [my friend's 
 library](https://github.com/john-johnson/j).<br/>
 It provides just one block named `box` that does all we need.
 
@@ -509,8 +509,8 @@ width="500" height="286" title="Inboxed items" alt="Inboxed items" border="0"/>
 
 ## Declarative JavaScript
 ###JavaScript for a block
-The `box` block borrowed from my friend's library supports roll up animation. This is its
-dynamic functionality coded in JavaScript.
+The `box` block borrowed from my friend's library supports roll-up
+animation. This is its dynamic functionality coded in JavaScript.
 
 If you'd like to use this in `head`, change the block BEMJSON declaration, and
 set that mixed `box` block uses its JavaScript implementation.
@@ -605,5 +605,5 @@ It's recommended to run a local project version:
 
 <sup>Credits</sup>
 Many thanks to [tyv](https://github.com/tyv) and
-[gela-d](https://github.com/gela-d) for cute HTML/CSS markup,
+[gela-d](https://github.com/gela-d) for the cute HTML/CSS markup,
 and to [ingdir](https://github.com/ingdir) for his help with the English version.
