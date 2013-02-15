@@ -91,4 +91,38 @@ The same works for the `Search` block, that is represented by `div` tag with som
 <img src="http://img-fotki.yandex.ru/get/6439/14441195.26/0_711dc_2f5ffa46_M.jpg" width="300" style="float: left" height="259" title="" alt="" border="0"/>
 
     <div class="tabbed-pane">        <ul>            <li>Bestsellers</li><li>...</li>        </ul>        <div>           The Casual Vacancy, J.K. Rowling        </div>     </div>
+
  <div style="clear:both"></div>
+## Independent CSS blocks
+But in order to build pages with blocks, we developers should be sure that these interface pieces can be put into any place on a page. This can be possible only if blocks are `independent`.
+
+Block independency means the following.<blockquote>A block must not be affected by its ancestors, and it its turn must not affect the descendants.<br/>Regardless of where this block was placed.</blockquote>
+When filling a page with block, we developers, should not care where exactly each block is placed. We just define a set of blocks with the appropriate order. And that's enough for getting a complete functional page.
+    <html>        <head>..</head>        <body>            <div class="head">                <div class="logo">...</div>                <ul class="menu">...</ul>                <div class="search">...</div>            </div>            <div class="layout">...</div>
+                    <div class="foot">...</div>        </body>    </html>
+But, of course, this maybe possible only due to some architectural requirements to each block. Let us now see what these requirements are.
+Let's have a look at what situations can cause block affection and how to prevent them beforehand.### RepeatingThe first is repeating blocks.
+
+The same block can appear on the page. For example, one more menu block can be placed into the foot block.<img src="http://img-fotki.yandex.ru/get/4135/14441195.26/0_711e2_5b1a2232_XL.jpg" width="800" height="600" title="" alt="" border="0"/>
+Since now the `Menu` block is not a unique within a page. Because of that we cannot use `id` selectors to match the CSS rules to it, this would be invalid.
+So,
+<blockquote>To apply CSS to a block, we should use classname selectors.</blockquote>
+
+**wrong**    <ul id="menu">        ...
+        
+    #menu {        ...
+**right**
+    <ul class="menu">        ...
+        
+    .menu {    ...
+This rule is correct for any block.<br/>Even if you think *now* that the block is unique within a page, this can be changed in the future. So, the best practice is to avoid id selectors at all and use classes.
+### Moving within a Page
+The next that can happen with a block is its movement within a page.
+TODO: Place a movie
+As you can see in the video, the `Tabbed Pane` block was moved to he right side of the page and immediately got broken since it has new ancestors, new parent DOM nodes now.<br/>This is that should not happen. We have do guarantee that a block will work correctly in any place on the page.
+Actually we can ensure this only if *avoiding cascade in CSS*.
+Such a recomendation sounds provocative. But anyway this is reasonable. Now let's see why.
+Cascade is a kind of relations between objects. A cascade rule says that one object depends on the other. It is a connection that can give some benefits.<br/>But we should have a control over all those connections. If not, this may break all.
+Trying to fix, we usually add even more connections to the system. That seems to work at first. But each addition just increase uncontrolable mess.
+The more cascade code we bring into the service, we more risk of future damages.<br/>So, we should use cascade only when it's really necessary.<br/>
+I'll show below the situation when cascade is possible. But in general the suggestion is to avoid it.
