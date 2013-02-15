@@ -280,10 +280,31 @@ You can see a modified block here. It has a blue theme. Of course, when having a
 
 Here cascade is possible because the tabs' appearance DOES depend on block's modifier.
 
-
-
-
-
-
-Just to wrap up, to make your blocks independent, please:
+*************And just to wrap up, to make your blocks independent, please:
  * a block has its "name"   - no "id" but "classname" selectors * avoid cascade * no "tag" selectors
+##Block File StructureAll the previously shown examples used flat variant when CSS files for blocks, elements and modifiers are placed into one folder `blocks`.
+    blocks/        tabbed-pane.css        tabbed-pane__tab.css        tabbed-pane__pane.css        tabbed-pane_theme_blue.css        tabbed-pane_theme_black.css        tabbed-pane_size_l.css        tabbed-pane_size_s.css        menu.css        menu__item.css        menu_size_l.css        menu_size_s.css            logo.css            search.css        search__checkbox.css        search__autocomplete.css
+That works for not very large projects and not very complicated blocks.
+If you expect many blocks with elements and modifiers, it's good to contain all the files related to a block in a block folder.
+    blocks/        tabbed-pane/            tabbed-pane.css            tabbed-pane__tab.css            tabbed-pane__pane.css            tabbed-pane_theme_blue.css            tabbed-pane_theme_black.css            tabbed-pane_size_l.css            tabbed-pane_size_s.css        logo/            logo.css           menu/            menu.css            menu__item.css            menu_size_l.css            menu_size_s.css            search/            search.css            search__checkbox.css            search__autocomplete.css
+Less mess, and also it's much easier to copy block files from project to project.
+We, at Yandex, use the most detailed structure with internal folders for elements and modifiers.
+    blocks/        tabbed-pane/            __tab/                _state/                    tabbed-pane__tab_state_current.css                tabbed-pane__tab.css            __pane/                tabbed-pane__pane.css            _theme/                tabbed-pane_theme_blue.css                tabbed-pane_theme_black.css            tabbed-pane.css
+It is not obligatory, but just works for our case.
+Now, before proceeding to the next section, let us sum up.
+First, any interface is a set of blocks, which can be combined in different ways, can be placed one into another, can change their parent block. And nothing bad should happen since the blocks are independent.<br/>Also, all the nested tags in a block are elements.</br>And finally, both blocks and elements can be modified.
+## BEM
+<img src="http://bem.info/bundles-desktop/index/blocks/logo/_type/logo_type_main.png"/>
+Now, that the three terms are introduced, I am happy to present you BEM methodology.You've just learnt its parts related to independent CSS blocks.Furthermore, BEM brings some other interesting solutions.
+First, BEM is a methodology. It's a way of thinking when developing. It provides us with data domain applicable for all the technologies.<br/>Besides, BEM is a toolkit automating your work.<br/>Finally, BEM is a range of reusable code libraries, making you to develop faster and better.Now let's have a look at all these opportunities in a little more detail.
+### CSS for IEFirst, I'd like to show how we deal with our bosom friend, IE browser.
+It is possible to link to a page an additional CSS file, especially for IE. Using conditional comments you make other browsers to ignore this file. So that there we can write fixes for IE only.
+    <html>        <head>            <!--[if gt IE 7]><!-->             <link rel="stylesheet" href="index.css">             <!--<![endif]-->            <!--[if lt IE 8]>             <link rel=stylesheet href="index.ie.css">             <![endif]-->        </head>        ...
+Inside the `ie.css` file you import the general CSS file for the page.
+    @import url(index.css);     @import url(blocks/menu/menu.ie.css);     @import url(blocks/button/button.ie.css);     @import url(blocks/footer/footer.ie.css);
+Then we can redefine CSS that doesn't work correctly for every piece of interface. It's logical to do it separately for each block.
+Blocks that need special IE hacks are equipped with additional `ie.css` files. If all the block files are under the block folder, we can just place one more file in it.
+    blocks/        tabbed-pane/            tabbed-pane.css            tabbed-pane.ie.css            ...        menu/            menu.css            menu.ie.css
+The same works for elements and modifiers.
+    blocks/        tabbed-pane/            tabbed-pane.css            tabbed-pane.ie.css            tabbed-pane__item.css            tabbed-pane__item.ie.css            tabbed-pane_theme_blue.css            tabbed-pane_theme_blue.ie.css
+So, a block folder encapsulates all the CSS needed. Using the project block stack we can assemble CSS files for pages, both the general one and for IE.
