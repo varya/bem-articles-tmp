@@ -150,3 +150,76 @@ But usually life is not that easy. We have several pages that are different but 
     @import url(blocks/header.css);     @import url(blocks/menu.css);     @import url(blocks/tabbed-pane.css);     @import url(blocks/text.css);     @import url(blocks/logo.css);     @import url(blocks/footer.css);
 That enables us to take only what's necessary for a page.
 As a result there is a block stack of our project, stored in a special folder. And some pages that use these blocks.
+Looks cool, but
+<img src="http://img-fotki.yandex.ru/get/6442/14441195.26/0_711e8_ec41e632_XL.jpg" width="570" height="311" title="" alt="" border="0"/>
+## Inside a BlockSo, let's have a look what is inside our blocks.
+<img src="http://img-fotki.yandex.ru/get/5626/14441195.26/0_711e1_e0ab223a_XL.jpg" width="645" height="46" title="" alt="" border="0"/>
+The menu block is going to be the first example.
+
+    <ul class="menu">        <li><a href="/new">New titles</a></li>        <li><a href="/soon">Coming soon</a></li>        <li><a href="/best">Bestsellers</a></li>        ...    </ul> 
+It's represented by `ul` tag and has some `li` children for the items. Also, the `ul` tag is marked with a CSS class, so that you can apply the rules to it.<br/>But the question is what to do with the items?
+The wide-spreaded solution is to write the CSS selector similar to the following.
+    .menu li    {        list-style: none;        display: inline-block;        padding: 0 0.5em;    }
+As you can see, cascade is used here. It seems to work right at first because all the reasons I listed agains cascade are not for this situation. `li` tags are always inside their `ul` parent. So, nothing bad should happen.
+But even inside such a small interface piece like a menu item there can be a lot of HTML markup in the future.
+<img src="http://img-fotki.yandex.ru/get/6426/14441195.26/0_711e9_8881d49a_-1-L.jpg" width="500" height="101" title="" alt="" border="0"/>
+Here you can see that a `Dropdown` block with its own list was placed into the menu item and immediately got broken because of this CSS instruction affects it.<br/>We got the long menu sausage instead of a nice dropdown.
+<img src="http://img-fotki.yandex.ru/get/4138/14441195.26/0_711ea_f392c569_L.jpg" width="500" height="174" title="" alt="" border="0"/>
+As you can see, except of avoiding cascade there appears even more specific rule. You should not use tag selectors.
+
+The additional explanation why it is a bad practice to use tag selectors can be easily found in the Internet.
+
+<blockquote cite="http://mzl.la/UuwZql">The style system matches rules by starting with the key selector, then moving to the left (looking for any ancestors in the rule’s selector).</blockquote>
+
+Further information can be found in [Davis Hyatt's article](http://mzl.la/UuwZql), from Mozilla.
+
+However we still need a solution to style menu items inside the `Menu` block.
+
+##Element
+First, let's clarify a definition and call the things inside a block — `elements`.
+
+<img src="http://img-fotki.yandex.ru/get/5641/14441195.27/0_711eb_80c1b241_L.jpg" width="304" height="500" title="" alt="" border="0"/>
+
+This is a clear picture of what elements are.<br/>As you can see, elements are non-independent pieces of interface. They make no sense on their own, but are to be used within their parent block.
+For example, the `Search` block has an input element and a button element.<img src="http://img-fotki.yandex.ru/get/5641/14441195.27/0_711ec_b4fa229f_L.jpg" width="500" height="80" title="" alt="" border="0"/>
+The `Tabbed Pane` block has 2 tab elements (and can have more if necessary) and the pane element to keep its content.
+<img src="http://img-fotki.yandex.ru/get/6426/14441195.27/0_711ed_5b70323b_M.jpg" width="300" height="264" title="" alt="" border="0"/>
+
+Styling elements you should think about them as self-reliant entities.
+
+<img src="http://img-fotki.yandex.ru/get/5626/14441195.26/0_711e1_e0ab223a_XL.jpg" width="645" height="46" title="" alt="" border="0"/>
+
+To apply CSS rules to elements we need to mark them with classes.<br/>In turn, to avoid cascade, it's necessary to prefix these classes with the block name.
+
+    <ul class="menu">        <li class="menu__item"><a href="/">Index</a></li>        <li class="menu__item"><a href="/new">New</a></li>        <li class="menu__item"><a href="/offer">Special offer</a></li>        <li class="menu__item"><a href="/shipping">Shipping</a></li>    </ul>
+
+    .menu__item    {        list-style: none;        display: inline-block;        padding: 0 0.5em;    }
+
+You can see here that CSS class for a menu item consists of block name, which is `menu`, element name, which is `item` and a group of separation symbols.
+
+We, at Yandex, use 2 underscores for separation. But that's optional. You can choose another symbol or a group of symbols.
+
+    .block__element
+    .block-element    .block--element
+
+If you don't like 2 underscores, maybe you'll be pleased with 3 ;-)
+
+###Optional elements
+So far so good, a block can be different from page to page.
+
+<img src="http://img-fotki.yandex.ru/get/5634/14441195.26/0_711db_81f5c441_L.jpg" width="500" height="47" title="" alt="" border="0"/>
+
+<img src="http://img-fotki.yandex.ru/get/4127/14441195.27/0_711ef_421e1e8c_L.jpg" width="500" height="88" title="" alt="" border="0"/>
+
+<img src="http://img-fotki.yandex.ru/get/5642/14441195.27/0_711ee_5370e90b_L.jpg" width="500" height="177" title="" alt="" border="0"/>
+
+The difference you can see in the slide is that it comprises different sets of elements. So that, elements are optional. This means we should be able to take CSS code for the elements we use.
+
+Similar to blocks, elements can be stored separately.
+    blocks/        search.css        search__checkbox.css        search__autocomplete.css        tabbed-pane.css        tabbed-pane__tab.css        tabbed-pane__pane.css        menu.css        menu__item.css        book.css        book__title.css        book__image.css
+That enables to take element code only if we want. If not, we just won't write the import instruction linking it to our page.
+
+
+
+Just to wrap up, to make your blocks independent, please:
+ * a block has its "name"   - no "id" but "classname" selectors * avoid cascade * no "tag" selectors
