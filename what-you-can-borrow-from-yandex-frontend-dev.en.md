@@ -416,3 +416,20 @@ The famous bootstrap component stack structured like a BEM library so that BEM t
 A set of jQuery-UI components turned into a block library. If you are used to jQuery-UI, you can still use it but with the nice BEM stack.
 * [Modernizir BL](https://github.com/narqo/modernizr-bl)<br/>
 a small repository that represents modernizr library, which many of you I am sure are familiar with, with BEM terms.
+
+## How to Try?
+There is a project skeleton hosted on GitHub, [bem-project-stub](https://github.com/bem/project-stub).<br/>
+This is a repository that can be a base for your own project using `bem-bl`, other necessary libraries and, of course, your own blocks. It's README gives all the explanations.<br/>So, this is a cool opportunity to touch BEM stack.
+### BEM Satellite Development Tools
+Besides, BEM team also produces many very nice development tools.
+[Borschik](https://github.com/veged/borschik) has already been introduced.
+Also, you might be interested into [CSSO](http://bem.info/tools/csso/), which is CSS optimizer unlike others. It does usual minification, but what is more, preforms structural optimizations, which no one of existing optimizers can do.
+**before**
+    .test1 {        border: none;        background-color: red;    }    .test2 {        border: none    }    .test3 {        background-color: #FF000;    }
+**after**
+    .test1, .test2 {        border: none    }    .test1, .test3 {        background-color: #F00;     }
+These two small pieces of code give a taste how smart CSSO is. Indeed the full list of the transformations it makes on CSS cannot be listed because of it's really huge. But you can find them all with the link http://bem.info/tools/csso/.
+One more optimizer, called [SVGO](https://github.com/svg/svgo), cleans SVG files from many useless information which graphic different editors leave inside.
+### Upshort
+So, BEM is
+ - A methodology about how to code web projects; - A toolkit to automate development and optimize production code, and - Libraries helping to develop faster and better.Please address your questions to the comminuty asking in [BEM Facebook group](http://www.facebook.com/groups/209713935765634/) or in Twitter [@bem_tw](https://twitter.com/bem_tw).
