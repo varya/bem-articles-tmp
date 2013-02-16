@@ -372,3 +372,17 @@ In Yandex it used to be XML, but now it's JSON.
     blocks/        menu/            menu.sass            menu.less            menu.coffee        tabbed-pane/            tabbed-pane.sass            tabbed-pane.coffee    pages/        index.html        index.sass -> index.css        index.coffee -> index.js
 Also it allows extensions. So, if you project needs a specific technology, you can a bit tune building instructions to techs the tools how to work with it.
 Moreover, there is no strict requirement to a naming convention and a file structure of your block stack. You are free to intent your own and configure tools to take block code from the right folders or files.
+## BEM is Multi-lingual
+I'd like to highlight that BEM methodology is multi technological. You can divide any technology into blocks and then build pages.
+For example, equip blocks with their Markdown description and build documentation site for your project block stack automatically.
+    blocks/        menu/            tabbed-pane.css            tabbed-pane.js            tabbed-pane.md
+This is what we've done at Yandex for our internal block library.
+Also, you can produce HTML output for blocks with templates. And templates are a block technology as well.
+    blocks/        menu/            tabbed-pane.css            tabbed-pane.js            tabbed-pane.md            tabbed-pane.xsl
+For our internal library we also used to use XSL for block. But not long ago we struggled with XSL for speed and came up with our own JavaScript-based template engine, called BEMHTML.
+    blocks/        menu/            tabbed-pane.css            tabbed-pane.js            tabbed-pane.md            tabbed-pane.bemhtml
+When that happend, we were just to add one more technology into already existing blocks. That was very easy.
+## BEMHTML
+BTW, BEMHML is a pseudo language which can be compiled into ugly but efficient JavaScript.
+We, at Yandex, are fans of declarative programming, and borrowed from XSL all it's declarative feature and implemented it with JavaScript speed.<br/>The result can be run on both client or server size. Sometimes we produce HTML output on server under Node.js and sometimes directly in a browser.If you are insriped, you can check out [BEMHTML reference](https://raw.github.com/bem/bem-bl/0.3/blocks-common/i-bem/__html/i-bem__html.wiki).<br/>
+However, the document is in Russian only, so you might need to use http://translate.yandex.com/. Official document's translation is still in progress.
