@@ -350,3 +350,25 @@ This needs JavaScript logic which we have to provide for a page. Pages are usual
 **pages/_index.css**
     .menu {        background: url(../blocks/menu/menu__bg.png);    }
 ## Building Page Files
+The page which a browser gets is not one piece of code. As you've already seen, it is a bunch of at least 4 files, which are HTML, 2 CSS files and JavaScript.<br/>
+When the page is under development or is maintained, set of its blocks can change. If a block was included into the set or removed from it, we are to change all the files.<br/>
+Actually it is a monkey job that definitely can be automated.
+
+The images shows us what are the blocks on the page and which ones contain others.
+
+<img src="http://img-fotki.yandex.ru/get/6429/14441195.26/0_711d6_9a3f328a_XL.jpg" width="800" height="558" title="" alt="" border="0"/>
+
+We got this information with a visual language the picture provides. But the same can be described in text. Any nesting format works for it.
+
+    <b:page>        <b:head>            <b:logo/>            <b:search>                <e:input/>                <e:button/>            </b-search>            <b:menu>                <e:item>Home</e:item>                <e:item>Contacts</e:item>                ...
+
+In Yandex it used to be XML, but now it's JSON.
+
+    {        block: 'page',        content: [            {                block: head,                content: [                    { block: 'logo' },                    {                        block: 'search',                        ...
+This page declaration is called `BEM tree` by analogy to DOM tree.
+The format describes what are the blocks on a page, preserves their nesting structure, elements and modifiers which blocks are using.<br/>Such a format can be parsed with special tools and turned into the CSS and JavaScript files automatically.The `BEM tree` can be turned into all the necessary static files. And if we need changes, we can fix `BEM tree`, run transformation process again and get updated files.
+These transformations are possible with a toolkit called [BEM tools](http://bem.info/tools/bem/). It's open sourced and hosted on GitHub, where you can find its installing instructions and a full description.
+It already supports many trendy technologies you maybe want to use, such as SASS, LESS, CoffeeScript. You are free to write code for your blocks with them and then build it into pages.
+    blocks/        menu/            menu.sass            menu.less            menu.coffee        tabbed-pane/            tabbed-pane.sass            tabbed-pane.coffee    pages/        index.html        index.sass -> index.css        index.coffee -> index.js
+Also it allows extensions. So, if you project needs a specific technology, you can a bit tune building instructions to techs the tools how to work with it.
+Moreover, there is no strict requirement to a naming convention and a file structure of your block stack. You are free to intent your own and configure tools to take block code from the right folders or files.
