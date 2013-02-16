@@ -103,7 +103,8 @@ Block independency means the following.<blockquote>A block must not be affected
 But, of course, this maybe possible only due to some architectural requirements to each block. Let us now see what these requirements are.
 Let's have a look at what situations can cause block affection and how to prevent them beforehand.### RepeatingThe first is repeating blocks.
 
-The same block can appear on the page. For example, one more menu block can be placed into the foot block.<img src="http://img-fotki.yandex.ru/get/4135/14441195.26/0_711e2_5b1a2232_XL.jpg" width="800" height="600" title="" alt="" border="0"/>
+The same block can appear on the page. For example, one more menu block can be placed into the foot block.
+<img src="http://img-fotki.yandex.ru/get/4135/14441195.26/0_711e2_5b1a2232_XL.jpg" width="800" height="600" title="" alt="" border="0"/>
 Since now the `Menu` block is not a unique within a page. Because of that we cannot use `id` selectors to match the CSS rules to it, this would be invalid.
 So,
 <blockquote>To apply CSS to a block, we should use classname selectors.</blockquote>
@@ -133,16 +134,21 @@ The same block can appear on the page. For example, one more menu block can be p
 <img src="http://img-fotki.yandex.ru/get/5632/14441195.26/0_711e4_bf58fb79_XL.jpg" width="800" height="600" title="" alt="" border="0"/>
 Again, even if a block *now* is a single one within a whole site, that does not mean it should depend on its surroundings.<br/>The recommendation about avoiding cascade works for all the blocks.
 #### Pages are Sets of BlocksThe other point is that when we are developing and maintaining, the block set of every page changes.
-<img src="http://img-fotki.yandex.ru/get/4122/14441195.26/0_711e5_77eb4431_XL.jpg" width="800" height="491" title="" alt="" border="0"/>We, developers, should think about keeping associated CSS in the actual state. So that if a block was removed from a page, we should remove its CSS code. Also, if a block was added to a page, we should ensure its CSS is linked there.<br/>That is not a problem for sites of 2-3 pages since we can keep all the stuff in a single one CSS file.<br/>
+<img src="http://img-fotki.yandex.ru/get/4122/14441195.26/0_711e5_77eb4431_XL.jpg" width="800" height="491" title="" alt="" border="0"/>
+We, developers, should think about keeping associated CSS in the actual state. So that if a block was removed from a page, we should remove its CSS code. Also, if a block was added to a page, we should ensure its CSS is linked there.<br/>That is not a problem for sites of 2-3 pages since we can keep all the stuff in a single one CSS file.<br/>
 But usually life is not that easy. We have several pages that are different but still have some common design solutions. At least the Head block is included in all the pages.<br/>So, developers usually place the common stuff into the common.css file. Everything else is distributed per pages.
 But let us look a bit closer to this practice.
-<img src="http://img-fotki.yandex.ru/get/4137/14441195.26/0_711e6_bc435d6a_XL.jpg" width="800" height="600" title="" alt="" border="0"/>You see in the picture, the `Head` block contains the `Search` block. This design solution seems to be invariable within the whole site.
+<img src="http://img-fotki.yandex.ru/get/4137/14441195.26/0_711e6_bc435d6a_XL.jpg" width="800" height="600" title="" alt="" border="0"/>
+You see in the picture, the `Head` block contains the `Search` block. This design solution seems to be invariable within the whole site.
 But not. The page providing advanced search form doesn't have this search block in the head.
-<img src="http://img-fotki.yandex.ru/get/4115/14441195.26/0_711e7_a1df577a_XL.jpg" width="800" height="600" title="" alt="" border="0"/>So, should we include search block code into `common.css` file? Seems like shouldn't. Well, should we copy-paste it for all the other pages? Again, no.
+<img src="http://img-fotki.yandex.ru/get/4115/14441195.26/0_711e7_a1df577a_XL.jpg" width="800" height="600" title="" alt="" border="0"/>
+So, should we include search block code into `common.css` file? Seems like shouldn't. Well, should we copy-paste it for all the other pages? Again, no.
 Moreover, this is just a simple example. In the real life the variety of interface object combinations indeed can be huge. Usually it is very hard to define the common stuff.<br/>On the other hand, copy paste is even worse.
 So, there should be a way out.
 
-<img src="http://img-fotki.yandex.ru/get/4122/14441195.26/0_711e5_77eb4431_XL.jpg" width="800" height="491" title="" alt="" border="0"/>What about turning these drawn sets of blocks into code?
+<img src="http://img-fotki.yandex.ru/get/4122/14441195.26/0_711e5_77eb4431_XL.jpg" width="800" height="491" title="" alt="" border="0"/>
+
+What about turning these drawn sets of blocks into code?
 We can store CSS code for every block separately, each in a file with a corresponding name.
     blocks/        header.css         menu.css         button.css         tabbed-pane.css         logo.css         footer.css
 So that, CSS for the `Menu` block is in the `menu.css` file, CSS for `Tabbed Pane` block is the `tabbed-pane.css` file and so on.
@@ -154,7 +160,7 @@ But usually life is not that easy. We have several pages that are different but 
 <img src="http://img-fotki.yandex.ru/get/6442/14441195.26/0_711e8_ec41e632_XL.jpg" width="570" height="311" title="" alt="" border="0"/>
 ## Inside a BlockSo, let's have a look what is inside our blocks.
 <img src="http://img-fotki.yandex.ru/get/5626/14441195.26/0_711e1_e0ab223a_XL.jpg" width="645" height="46" title="" alt="" border="0"/>
-The menu block is going to be the first example.
+The menu block is going to be the first example.
 
     <ul class="menu">        <li><a href="/new">New titles</a></li>        <li><a href="/soon">Coming soon</a></li>        <li><a href="/best">Bestsellers</a></li>        ...    </ul> 
 It's represented by `ul` tag and has some `li` children for the items. Also, the `ul` tag is marked with a CSS class, so that you can apply the rules to it.<br/>But the question is what to do with the items?
@@ -183,7 +189,7 @@ First, let's clarify a definition and call the things inside a block — `elemen
 This is a clear picture of what elements are.<br/>As you can see, elements are non-independent pieces of interface. They make no sense on their own, but are to be used within their parent block.
 For example, the `Search` block has an input element and a button element.<img src="http://img-fotki.yandex.ru/get/5641/14441195.27/0_711ec_b4fa229f_L.jpg" width="500" height="80" title="" alt="" border="0"/>
 The `Tabbed Pane` block has 2 tab elements (and can have more if necessary) and the pane element to keep its content.
-<img src="http://img-fotki.yandex.ru/get/6426/14441195.27/0_711ed_5b70323b_M.jpg" width="300" height="264" title="" alt="" border="0"/>
+<img src="http://img-fotki.yandex.ru/get/6426/14441195.27/0_711ed_5b70323b_M.jpg" width="300" height="264" title="" alt="" border="0"/>
 
 Styling elements you should think about them as self-reliant entities.
 
