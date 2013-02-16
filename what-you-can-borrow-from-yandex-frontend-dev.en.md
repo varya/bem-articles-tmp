@@ -386,3 +386,33 @@ In Yandex it used to be XML, but now it's JSON.
 BTW, BEMHML is a pseudo language which can be compiled into ugly but efficient JavaScript.
 We, at Yandex, are fans of declarative programming, and borrowed from XSL all it's declarative feature and implemented it with JavaScript speed.<br/>The result can be run on both client or server size. Sometimes we produce HTML output on server under Node.js and sometimes directly in a browser.If you are insriped, you can check out [BEMHTML reference](https://raw.github.com/bem/bem-bl/0.3/blocks-common/i-bem/__html/i-bem__html.wiki).<br/>
 However, the document is in Russian only, so you might need to use http://translate.yandex.com/. Official document's translation is still in progress.
+
+## Libraries
+BEM methodology enables you to create reusable code libraries. That, in turn, allows to develop faster and better.
+
+<img src="http://img-fotki.yandex.ru/get/5642/14441195.27/0_71226_17dfd887_XL.jpg" width="800" height="481" title="" alt="" border="0"/>
+
+We, here at Yandex, have a bunch of our in-house BEM-based libraries helping us to build a new Yandex-style web service much faster than from the scratch and making maintaining process easier.
+
+When we started to open source our magic staff, a small part of the internal library was turned into [bem-bl](http://bem.github.com/bem-bl/index.en.html).<br/>
+`bem-bl` stands for BEM block library and provides some common blocks for building web interfaces.
+
+All the available blocks are represented at the [bem-bl documentation web site](http://bem.github.com/bem-bl/index.en.html).
+
+Each block is represented by a documentation page where you can find its description and some examples. Significant that all these examples are alive. They are not just screenshots of interface pieces, but iframes showing real pages with blocks.<br/>
+Using the block page you can try how the block works in your browser and then proceed to the code in order to see how to use it.
+
+Also, you can explore block code since they all are in the [GitHub repository](https://github.com/bem/bem-bl). You can see here a block which is implemented with CSS, JavaScript and BEMHTML templates.
+
+Such exploration helps when you need to create your own block library.
+
+### Examples of BEM Libraries
+
+Here there are some libraries implemented with BEM:
+
+* [Bootsrap BL](https://github.com/tadatuta/bootstrap-bl)<br/>
+The famous bootstrap component stack structured like a BEM library so that BEM tools can work with it.
+* [jQueryUI BL](https://github.com/narqo/jqueryui-bl)<br/>
+A set of jQuery-UI components turned into a block library. If you are used to jQuery-UI, you can still use it but with the nice BEM stack.
+* [Modernizir BL](https://github.com/narqo/modernizr-bl)<br/>
+a small repository that represents modernizr library, which many of you I am sure are familiar with, with BEM terms.
