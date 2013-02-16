@@ -306,5 +306,47 @@ Here cascade is possible because the tabs' appearance DOES depend on block's mod
 Blocks that need special IE hacks are equipped with additional `ie.css` files. If all the block files are under the block folder, we can just place one more file in it.
     blocks/        tabbed-pane/            tabbed-pane.css            tabbed-pane.ie.css            ...        menu/            menu.css            menu.ie.css
 The same works for elements and modifiers.
-    blocks/        tabbed-pane/            tabbed-pane.css            tabbed-pane.ie.css            tabbed-pane__item.css            tabbed-pane__item.ie.css            tabbed-pane_theme_blue.css            tabbed-pane_theme_blue.ie.css
+    blocks/        tabbed-pane/            tabbed-pane.css            tabbed-pane.ie.css            tabbed-pane__item.css            tabbed-pane__item.ie.css            tabbed-pane_theme_blue.css            tabbed-pane_theme_blue.ie.css with
 So, a block folder encapsulates all the CSS needed. Using the project block stack we can assemble CSS files for pages, both the general one and for IE.
+## JavaScriptHTML/CSS dummy is not a functional web application yet. But implementing some JavaScript logic we can paint it with colours.
+We should code that the `Tabbed Pane` block reacts on leftclick.
+<img src="http://img-fotki.yandex.ru/get/4120/14441195.27/0_71214_cff3fb1_M.jpg" width="300" height="259" title="" alt="" border="0"/>
+The `Dropdown` block functionality is that it is hidden when a page is just loaded. But if a user makes clicks with the left mouse button on its switcher, the block shows.
+`Dropdown` also can be smart enough to calculate its direction according to its place on a page. In the picture the second `Dropdown` block opens up since it's too close to the bottom.
+
+<div style="width: 800px; height: 500px; border: #000 1px solid; position: relative;">
+<img src="http://img-fotki.yandex.ru/get/4116/14441195.27/0_71220_33b9df76_M.jpg" width="300" height="271" title="" alt="" border="0" style="position: absolute; top: 20px; left: 20px"/>
+<img src="http://img-fotki.yandex.ru/get/5641/14441195.27/0_71225_daf55cf9_M.jpg" width="300" height="271" title="" alt="" border="0" style="position: absolute; bottom: 20px; right: 20px"/>
+</div>
+
+This needs JavaScript logic which we have to provide for a page. Pages are usually supplied with JavaScript logic linking a `.js` file to it.
+
+### Sets of Block in JavaScript
+Again, for small projects all the magic can fit comfortably into a single one js file.
+    <!DOCTYPE html>    <html>        <head>             <link rel=stylesheet href="index.css">            <script type="text/javascript" src="all.js"/>        </head>        ...
+But usually we have different functionality for different pages. So that similar to CSS we a have separate JS file for every page.
+    <!DOCTYPE html>    <html>        <head>             <link rel=stylesheet href="index.css">            <script type="text/javascript" src="index.js"/>        </head>        ...
+Again, block set of a page can be changed and we need to ensure that we link corresponding JavaScript.
+Similar to CSS for blocks, we can detach a separate js file for every block and store it under the block folder.
+    blocks/         menu/            menu.css            menu.js         dropdown/            dropdown.css            dropdown.js         tabbed-pane/            tabbed-pane.css            tabbed-pane.js 
+Inside the `menu.js` file there is a piece of logic related to the `Menu`. The same for the `Tabbed Pane`.
+Using these pieces of logic we can build JavaScript file for a page similar to what we've done with CSS before.
+    borschik:include:blocks/menu/menu.js    borschik:include:blocks/tabbed-pane/tabbed-pane.js    ...
+Each line in the file refers to a particular block.
+##CSS and JavaScript flattening with Borschik
+Don't be confused with an unfamiliar "include" instruction. Of course, we do not supply a browser with such a strange file but flatten each include.
+    /* Menu block begins */    (function($){        $('.menu__item').on('click', function(e) {            $(this).toggleClass('menu__item_state_current');        });    })(jQuery)Here you can see here that including line for the menu turned into the content of the file.
+You can do such inlining magic automatically with the tool called [Borschik](https://github.com/veged/borschik).
+Besides flattening JavaScript, it does the same with CSS files of imports.
+You can work with imports when developing, but for production it's better to decrease the amount of CSS files. Each CSS import causes an HTTP request making a browser to load many files.
+    @import url(blocks/header.css);     @import url(blocks/menu.css);    ...
+Using borschik to prepare a project for production deployment, you can turn all the imports into relevant CSS content.
+    .header {        ...    }    .menu {        ...    }
+This is very important that borschik works correctly with relative paths in CSS. So, it's not just stupid inlining.
+**blocks/menu/menu.css**
+    .menu {        background: url(menu__bg.png);    }
+**pages/index.css**
+    @import url(blocks/menu/menu.css);
+**pages/_index.css**
+    .menu {        background: url(../blocks/menu/menu__bg.png);    }
+## Building Page Files
