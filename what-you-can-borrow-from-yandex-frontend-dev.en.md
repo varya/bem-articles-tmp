@@ -797,31 +797,45 @@ You've just learnt its parts related to independent CSS blocks.
 
 Furthermore, BEM brings some other interesting solutions.
 
-First, BEM is a methodology. It's a way of thinking when developing. It provides us with data domain applicable for all the technologies.<br/>
-Besides, BEM is a toolkit automating your work.<br/>
-Finally, BEM is a range of reusable code libraries, making you to develop faster and better.
+ * First, BEM is a methodology. It's a way of thinking when developing. It provides
+us with data domain applicable for all the technologies.
+ * Besides, BEM is a toolkit automating your work.
+ * Finally, BEM is a range of reusable code libraries, making you to develop
+ * faster and better.
 
 Now let's have a look at all these opportunities in a little more detail.
 
 ### CSS for IE
-First, I'd like to show how we deal with our bosom friend, IE browser.
+First, I'd like to show how we deal with our bosom friend, the IE browser.
 
-It is possible to link to a page an additional CSS file, especially for IE. Using conditional comments you make other browsers to ignore this file. So that there we can write fixes for IE only.
+It is possible to link an additional CSS file to a page, especially for IE.
+Using conditional comments you make other browsers ignore this file. So that,
+there we can write fixes for IE only.
 
     <html>
         <head>
-            <!--[if gt IE 7]><!-->             <link rel="stylesheet" href="index.css">             <!--<![endif]-->
-            <!--[if lt IE 8]>             <link rel=stylesheet href="index.ie.css">             <![endif]-->
+            <!--[if gt IE 7]><!-->
+                <link rel="stylesheet" href="index.css">
+            <!--<![endif]-->
+            <!--[if lt IE 8]>
+                <link rel=stylesheet href="index.ie.css">
+            <![endif]-->
         </head>
         ...
 
 Inside the `ie.css` file you import the general CSS file for the page.
 
-    @import url(index.css);     @import url(blocks/menu/menu.ie.css);     @import url(blocks/button/button.ie.css);     @import url(blocks/footer/footer.ie.css);
+    @import url(index.css);
+    @import url(blocks/menu/menu.ie.css);
+    @import url(blocks/button/button.ie.css);
+    @import url(blocks/footer/footer.ie.css);
 
-Then we can redefine CSS that doesn't work correctly for every piece of interface. It's logical to do it separately for each block.
+Then, you can redefine CSS that doesn't work correctly for every piece of
+interface. It's logical to do it separately for each block.
 
-Blocks that need special IE hacks are equipped with additional `ie.css` files. If all the block files are under the block folder, we can just place one more file in it.
+Blocks that need special IE hacks are equipped with additional `ie.css` files.
+If all the block files are under the block folder, we can just place one more
+file in it.
 
     blocks/
 
@@ -846,62 +860,85 @@ The same works for elements and modifiers.
             tabbed-pane_theme_blue.css
             tabbed-pane_theme_blue.ie.css with
 
-So, a block folder encapsulates all the CSS needed. Using the project block stack we can assemble CSS files for pages, both the general one and for IE.
+So, a block folder encapsulates all the CSS needed. Using the project block
+stack we can assemble CSS files for pages, both the general one and for IE.
 
 ## JavaScript
-HTML/CSS dummy is not a functional web application yet. But implementing some JavaScript logic we can paint it with colours.
+HTML/CSS dummy is not a functional web application yet. But implementing some
+JavaScript logic we can paint it with colours.
 
 We should code that the `Tabbed Pane` block reacts on leftclick.
 
-<img src="http://img-fotki.yandex.ru/get/4120/14441195.27/0_71214_cff3fb1_M.jpg" width="300" height="259" title="" alt="" border="0"/>
+<img src="http://img-fotki.yandex.ru/get/4120/14441195.27/0_71214_cff3fb1_M.jpg"
+width="300" height="259" title="" alt="" border="0"/>
 
-The `Dropdown` block functionality is that it is hidden when a page is just loaded. But if a user makes clicks with the left mouse button on its switcher, the block shows.
+The `Dropdown` block functionality is that it is hidden when a page is just
+loaded. But if a user makes clicks with the left mouse button on its switcher,
+the block shows.
 
-`Dropdown` also can be smart enough to calculate its direction according to its place on a page. In the picture the second `Dropdown` block opens up since it's too close to the bottom.
-
+The `Dropdown` also can be smart enough to calculate its direction according to its
+place on a page. In the picture the second `Dropdown` block opens up since it's
+too close to the bottom.
 
 <div style="width: 800px; height: 500px; border: #000 1px solid; position: relative;">
-<img src="http://img-fotki.yandex.ru/get/4116/14441195.27/0_71220_33b9df76_M.jpg" width="300" height="271" title="" alt="" border="0" style="position: absolute; top: 20px; left: 20px"/>
-<img src="http://img-fotki.yandex.ru/get/5641/14441195.27/0_71225_daf55cf9_M.jpg" width="300" height="271" title="" alt="" border="0" style="position: absolute; bottom: 20px; right: 20px"/>
+<img
+src="http://img-fotki.yandex.ru/get/4116/14441195.27/0_71220_33b9df76_M.jpg"
+width="300" height="271" title="" alt="" border="0" style="position: absolute;
+top: 20px; left: 20px"/>
+<img
+src="http://img-fotki.yandex.ru/get/5641/14441195.27/0_71225_daf55cf9_M.jpg"
+width="300" height="271" title="" alt="" border="0" style="position: absolute;
+bottom: 20px; right: 20px"/>
 </div>
 
-This needs JavaScript logic which we have to provide for a page. Pages are usually supplied with JavaScript logic linking a `.js` file to it.
+This needs JavaScript logic which you have to provide for a page. Pages are
+usually supplied with JavaScript logic by linking a `.js` file to it.
 
 ### Sets of Block in JavaScript
-
-Again, for small projects all the magic can fit comfortably into a single one js file.
-
-    <!DOCTYPE html>
-    <html>
-        <head>             <link rel=stylesheet href="index.css">
-            <script type="text/javascript" src="all.js"/>
-        </head>
-        ...
-
-But usually we have different functionality for different pages. So that similar to CSS we a have separate JS file for every page.
+Again, for small projects all the magic can fit comfortably into a single one
+JavaScript file.
 
     <!DOCTYPE html>
     <html>
-        <head>             <link rel=stylesheet href="index.css">
-            <script type="text/javascript" src="index.js"/>
+        <head>
+            <link rel=stylesheet href="index.css"/>
+            <script type="text/javascript" src="all.js"></script>
         </head>
         ...
 
-Again, block set of a page can be changed and we need to ensure that we link corresponding JavaScript.
+But usually we have different functionality for different pages. So that similar
+to CSS we a have separate JS file for every page.
 
-Similar to CSS for blocks, we can detach a separate js file for every block and store it under the block folder.
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel=stylesheet href="index.css"/>
+            <script type="text/javascript" src="index.js"></script>
+        </head>
+        ...
 
-    blocks/         menu/
+Again, block set of a page can be changed and you need to ensure that you link
+corresponding JavaScript.
+
+Similar to CSS for blocks, you can detach a separate js file for every block and
+store it under the block folder.
+
+    blocks/
+        menu/
             menu.css
-            menu.js         dropdown/
+            menu.js
+        dropdown/
             dropdown.css
-            dropdown.js         tabbed-pane/
+            dropdown.js
+        tabbed-pane/
             tabbed-pane.css
             tabbed-pane.js 
 
-Inside the `menu.js` file there is a piece of logic related to the `Menu`. The same for the `Tabbed Pane`.
+Inside the `menu.js` file there is a piece of logic related to the `Menu`. The
+same for the `Tabbed Pane`.
 
-Using these pieces of logic we can build JavaScript file for a page similar to what we've done with CSS before.
+Using these pieces of logic you can build JavaScript file for a page similar to
+what you've done with CSS before.
 
     borschik:include:blocks/menu/menu.js
     borschik:include:blocks/tabbed-pane/tabbed-pane.js
@@ -909,10 +946,10 @@ Using these pieces of logic we can build JavaScript file for a page similar to w
 
 Each line in the file refers to a particular block.
 
-
 ##CSS and JavaScript flattening with Borschik
 
-Don't be confused with an unfamiliar "include" instruction. Of course, we do not supply a browser with such a strange file but flatten each include.
+Don't be confused with an unfamiliar `include` instruction. Of course, we are
+not going to supply a browser with such a strange file but flatten each include.
 
     /* Menu block begins */
     (function($){
@@ -921,19 +958,23 @@ Don't be confused with an unfamiliar "include" instruction. Of course, we do not
         });
     })(jQuery)
 
-Here you can see here that including line for the menu turned into the content of the file.
+Here you can see here that including line for the menu turned into the content
+of the file.
 
-You can do such inlining magic automatically with the tool called [Borschik](https://github.com/veged/borschik).
+You can do such inlining magic automatically with the tool called
+[Borschik](https://github.com/veged/borschik).
 
 Besides flattening JavaScript, it does the same with CSS files of imports.
 
-You can work with imports when developing, but for production it's better to decrease the amount of CSS files. Each CSS import causes an HTTP request making a browser to load many files.
-
+You can work with imports when developing, but for production it's better to
+decrease the amount of CSS files. Each CSS `@import` causes an HTTP request making
+a browser to load many files.
 
     @import url(blocks/header.css);     @import url(blocks/menu.css);
     ...
 
-Using borschik to prepare a project for production deployment, you can turn all the imports into relevant CSS content.
+Using `borschik` to prepare a project for production deployment you can turn all
+the imports into relevant CSS content.
 
     .header {
         ...
@@ -942,7 +983,8 @@ Using borschik to prepare a project for production deployment, you can turn all 
         ...
     }
 
-This is very important that borschik works correctly with relative paths in CSS. So, it's not just stupid inlining.
+This is very important that `borschik` works correctly with relative paths in CSS.
+So, it's not just stupid inlining.
 
 **blocks/menu/menu.css**
 
@@ -966,17 +1008,22 @@ This is very important that borschik works correctly with relative paths in CSS.
 
 ## Building Page Files
 
-The page which a browser gets is not one piece of code. As you've already seen, it is a bunch of at least 4 files, which are HTML, 2 CSS files and JavaScript.<br/>
+The page which a browser gets is not one piece of code. As you've already seen,
+it is a bunch of at least 4 files, which are HTML, 2 CSS files and JavaScript.
 
-When the page is under development or is maintained, set of its blocks can change. If a block was included into the set or removed from it, we are to change all the files.<br/>
+When the page is under development or is maintained, set of its blocks can
+change. If a block was included into the set or removed from it, we are to
+change all the files.<br/>
 Actually it is a monkey job that definitely can be automated.
 
 The images shows us what are the blocks on the page and which ones contain others.
 
+<img
+src="http://img-fotki.yandex.ru/get/6429/14441195.26/0_711d6_9a3f328a_XL.jpg"
+width="800" height="558" title="" alt="" border="0"/>
 
-<img src="http://img-fotki.yandex.ru/get/6429/14441195.26/0_711d6_9a3f328a_XL.jpg" width="800" height="558" title="" alt="" border="0"/>
-
-We got this information with a visual language the picture provides. But the same can be described in text. Any nesting format works for it.
+We got this information with a visual language the picture provides. But the
+same can be described in text. Any nesting format works for it.
 
     <b:page>
         <b:head>
@@ -990,7 +1037,7 @@ We got this information with a visual language the picture provides. But the sam
                 <e:item>Contacts</e:item>
                 ...
 
-In Yandex it used to be XML, but now it's JSON.
+In Yandex it used to use XML, but now it's JSON.
 
     {
         block: 'page',
@@ -1005,14 +1052,22 @@ In Yandex it used to be XML, but now it's JSON.
 
 This page declaration is called `BEM tree` by analogy to DOM tree.
 
-The format describes what are the blocks on a page, preserves their nesting structure, elements and modifiers which blocks are using.<br/>
-Such a format can be parsed with special tools and turned into the CSS and JavaScript files automatically.
+The format describes what are the blocks on a page, preserves their nesting
+structure, elements and modifiers which blocks are using.<br/>
+Such a format can be parsed with a special tools and turned into the CSS and
+JavaScript files automatically.
 
-The `BEM tree` can be turned into all the necessary static files. And if we need changes, we can fix `BEM tree`, run transformation process again and get updated files.
+The `BEM tree` can be turned into all the necessary static files. And if you need
+changes, you can fix `BEM tree`, run transformation process again and get updated
+files.
 
-These transformations are possible with a toolkit called [BEM tools](http://bem.info/tools/bem/). It's open sourced and hosted on GitHub, where you can find its installing instructions and a full description.
+These transformations are possible with a toolkit called [BEM
+tools](http://bem.info/tools/bem/). It's open sourced and hosted on GitHub,
+where you can find its installing instructions and a full description.
 
-It already supports many trendy technologies you maybe want to use, such as SASS, LESS, CoffeeScript. You are free to write code for your blocks with them and then build it into pages.
+It already supports many fashionable technologies you might want to use, such as
+SASS, LESS, CoffeeScript. You are free to write code for your blocks with them
+and then build it into pages.
 
     blocks/
 
@@ -1031,15 +1086,20 @@ It already supports many trendy technologies you maybe want to use, such as SASS
         index.sass -> index.css
         index.coffee -> index.js
 
-Also it allows extensions. So, if you project needs a specific technology, you can a bit tune building instructions to techs the tools how to work with it.
+Also it allows extensions. So, if your project needs a specific technology, you
+can a bit tune building instructions to teach the tools how to work with it.
 
-Moreover, there is no strict requirement to a naming convention and a file structure of your block stack. You are free to intent your own and configure tools to take block code from the right folders or files.
+Moreover, there is no strict requirement to a naming convention and a file
+structure of your block stack. You are free to intent your own and configure
+tools to take block code from the right folders or files.
 
 ## BEM is Multi-lingual
 
-I'd like to highlight that BEM methodology is multi technological. You can divide any technology into blocks and then build pages.
+I'd like to highlight that BEM methodology is multi technological. You can
+divide any technology into blocks and then build pages.
 
-For example, equip blocks with their Markdown description and build documentation site for your project block stack automatically.
+For example, equip blocks with their Markdown description and build
+documentation site for your project block stack automatically.
 
     blocks/
 
@@ -1050,7 +1110,8 @@ For example, equip blocks with their Markdown description and build documentatio
 
 This is what we've done at Yandex for our internal block library.
 
-Also, you can produce HTML output for blocks with templates. And templates are a block technology as well.
+Also, you can produce HTML output for blocks with templates. And templates are a
+block technology as well.
 
     blocks/
 
@@ -1060,7 +1121,9 @@ Also, you can produce HTML output for blocks with templates. And templates are a
             tabbed-pane.md
             tabbed-pane.xsl
 
-For our internal library we also used to use XSL for block. But not long ago we struggled with XSL for speed and came up with our own JavaScript-based template engine, called BEMHTML.
+For our internal library we also used to use XSL asa templating solution. But
+not long ago we struggled with XSL for speed and came up with our own
+JavaScript-based template engine, called `BEMHTML`.
 
     blocks/
 
@@ -1070,34 +1133,54 @@ For our internal library we also used to use XSL for block. But not long ago we 
             tabbed-pane.md
             tabbed-pane.bemhtml
 
-When that happend, we were just to add one more technology into already existing blocks. That was very easy.
+When that happend, we were just to add one more technology into already existing
+blocks. That was very easy.
 
 ## BEMHTML
 
-BTW, BEMHML is a pseudo language which can be compiled into ugly but efficient JavaScript.
+BTW, `BEMHML` is a pseudo language which can be compiled into ugly but efficient
+JavaScript.
 
-We, at Yandex, are fans of declarative programming, and borrowed from XSL all it's declarative feature and implemented it with JavaScript speed.<br/>
-The result can be run on both client or server size. Sometimes we produce HTML output on server under Node.js and sometimes directly in a browser.
+We, at Yandex, are fans of declarative programming, and borrowed from XSL all
+it's declarative feature and implemented it with JavaScript speed.<br/>
+The result can be run on both client or server size. Sometimes we produce HTML
+output on server under Node.js and sometimes directly in a browser.
 
-If you are insriped, you can check out [BEMHTML reference](https://raw.github.com/bem/bem-bl/0.3/blocks-common/i-bem/__html/i-bem__html.wiki).<br/>
-However, the document is in Russian only, so you might need to use http://translate.yandex.com/. Official document's translation is still in progress.
+If you are insriped, you can check out [BEMHTML
+reference](https://raw.github.com/bem/bem-bl/0.3/blocks-common/i-bem/__html/i-bem__html.wiki).<br/>
+However, the document is in Russian only, so you might need to use
+http://translate.yandex.com/. Official document's translation is still in
+progress.
 
 ## Libraries
-BEM methodology enables you to create reusable code libraries. That, in turn, allows to develop faster and better.
+BEM methodology enables you to create reusable code libraries. That, in turn,
+allows to develop faster and better.
 
-<img src="http://img-fotki.yandex.ru/get/5642/14441195.27/0_71226_17dfd887_XL.jpg" width="800" height="481" title="" alt="" border="0"/>
+<img
+src="http://img-fotki.yandex.ru/get/5642/14441195.27/0_71226_17dfd887_XL.jpg"
+width="800" height="481" title="" alt="" border="0"/>
 
-We, here at Yandex, have a bunch of our in-house BEM-based libraries helping us to build a new Yandex-style web service much faster than from the scratch and making maintaining process easier.
+We, here at Yandex, have a bunch of our in-house BEM-based libraries helping us
+to build a new Yandex-style web service much faster than from the scratch and
+making maintaining process easier.
 
-When we started to open source our magic staff, a small part of the internal library was turned into [bem-bl](http://bem.github.com/bem-bl/index.en.html).<br/>
-`bem-bl` stands for BEM block library and provides some common blocks for building web interfaces.
+When we started to open source our magic stuff, a small part of the internal
+library was turned into [bem-bl](http://bem.github.com/bem-bl/index.en.html).<br/>
+`bem-bl` stands for `BEM block library` and provides some common blocks for
+building web interfaces.
 
-All the available blocks are represented at the [bem-bl documentation web site](http://bem.github.com/bem-bl/index.en.html).
+All the available blocks are represented at the [bem-bl documentation web
+site](http://bem.github.com/bem-bl/index.en.html).
 
-Each block is represented by a documentation page where you can find its description and some examples. Significant that all these examples are alive. They are not just screenshots of interface pieces, but iframes showing real pages with blocks.<br/>
-Using the block page you can try how the block works in your browser and then proceed to the code in order to see how to use it.
+Each block is represented by a documentation page where you can find its
+description and some examples. Significant that all these examples are alive.
+They are not just screenshots of interface pieces, but iframes showing real
+pages with blocks.<br/>
+Using the block page you can try how the block works in your browser and then
+proceed to the code in order to see how to use it.
 
-Also, you can explore block code since they all are in the [GitHub repository](https://github.com/bem/bem-bl). You can see here a block which is implemented with CSS, JavaScript and BEMHTML templates.
+Also, you can explore block code since they all are in the [GitHub
+repository](https://github.com/bem/bem-bl).
 
 Such exploration helps when you need to create your own block library.
 
@@ -1106,16 +1189,21 @@ Such exploration helps when you need to create your own block library.
 Here there are some libraries implemented with BEM:
 
 * [Bootsrap BL](https://github.com/tadatuta/bootstrap-bl)<br/>
-The famous bootstrap component stack structured like a BEM library so that BEM tools can work with it.
-
+The famous bootstrap component stack structured like a BEM library so that BEM
+tools can work with it.
 * [jQueryUI BL](https://github.com/narqo/jqueryui-bl)<br/>
-A set of jQuery-UI components turned into a block library. If you are used to jQuery-UI, you can still use it but with the nice BEM stack.
+A set of jQuery-UI components turned into a block library. If you are used to
+jQuery-UI, you can still use it but with the nice BEM stack.
 * [Modernizir BL](https://github.com/narqo/modernizr-bl)<br/>
-a small repository that represents modernizr library, which many of you I am sure are familiar with, with BEM terms.
+a small repository that represents the Modernizr library, which many of you I'm
+sure are familiar with, with BEM terms.
 
 ## How to Try?
-There is a project skeleton hosted on GitHub, [bem-project-stub](https://github.com/bem/project-stub).<br/>
-This is a repository that can be a base for your own project using `bem-bl`, other necessary libraries and, of course, your own blocks. It's README gives all the explanations.<br/>
+There is a project skeleton hosted on GitHub,
+[bem-project-stub](https://github.com/bem/project-stub).<br/>
+This is a repository that can be a base for your own project using `bem-bl`,
+other necessary libraries and, of course, your own blocks. It's README gives all
+the explanations.<br/>
 So, this is a cool opportunity to touch BEM stack.
 
 ### BEM Satellite Development Tools
@@ -1124,7 +1212,9 @@ Besides, BEM team also produces many very nice development tools.
 
 [Borschik](https://github.com/veged/borschik) has already been introduced.
 
-Also, you might be interested into [CSSO](http://bem.info/tools/csso/), which is CSS optimizer unlike others. It does usual minification, but what is more, preforms structural optimizations, which no one of existing optimizers can do.
+Also, you might be interested in [CSSO](http://bem.info/tools/csso/), which is
+CSS optimizer unlike others. It does usual minification, but what is more,
+preforms structural optimizations, which no one of existing optimizers can do.
 
 **before**
 
@@ -1150,9 +1240,12 @@ Also, you might be interested into [CSSO](http://bem.info/tools/csso/), which is
     .test1, .test3 {
         background-color: #F00;     }
 
-These two small pieces of code give a taste how smart CSSO is. Indeed the full list of the transformations it makes on CSS cannot be listed because of it's really huge. But you can find them all with the link http://bem.info/tools/csso/.
+These two small pieces of code give a taste how smart CSSO is. Indeed the full
+list of the transformations it makes on CSS cannot be listed because of it's
+really huge. But you can find them all with the link http://bem.info/tools/csso/.
 
-One more optimizer, called [SVGO](https://github.com/svg/svgo), cleans SVG files from many useless information which graphic different editors leave inside.
+One more optimizer, called [SVGO](https://github.com/svg/svgo), cleans SVG files
+from many useless information which different graphic editors leave inside.
 
 ### Upshort
 
@@ -1162,4 +1255,6 @@ So, BEM is
  - A toolkit to automate development and optimize production code, and
  - Libraries helping to develop faster and better.
 
-Please address your questions to the comminuty asking in [BEM Facebook group](http://www.facebook.com/groups/209713935765634/) or in Twitter [@bem_tw](https://twitter.com/bem_tw).
+Please address your questions to the comminuty asking in [BEM Facebook
+group](http://www.facebook.com/groups/209713935765634/) or in Twitter
+[@bem_tw](https://twitter.com/bem_tw).
